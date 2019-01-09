@@ -10,6 +10,7 @@ import threading
 import time
 import struct
 import queue
+import serial
 
 import numpy as np
 from scipy.fftpack import fft 
@@ -19,9 +20,16 @@ from matplotlib import animation
 
 SYNC_HEAD = b'\xdf\x1b\xdf\x9b'
 
+# 4 250Hz
+# 5 125Hz
+# 6 62.5Hz
+# 7 31.25Hz
+# 8 15.625Hz
+# 9 7.813Hz
+# 10 3.906Hz
 
-FS = 500
-WINDOW_SIZE = 2048
+FS = 31.25
+WINDOW_SIZE = 256
 
 rb = RingBuffer(WINDOW_SIZE,3)
 in_buf = []
@@ -114,8 +122,49 @@ def sock_init(port):
         t.start()
 #    tr.start()
 
-sock_init(8888)
 
+#    tr.start()
+
+def hexsend(string_data=''):
+    hex_data = string_data.decode("hex")
+    return hex_data
+
+def ser_init():
+    ser = serial.Serial("com16",115200)
+    print(ser.name)
+    if ser.isOpen():
+        print("open success")
+    else:
+        print("open failed")
+    try:        
+        while True:
+            count = ser.inWaiting() 
+            if count > 0:
+                data = ser.read(count) 
+                inb_q.queue.extend(data)
+#                print("receive:", data)
+#                if data != b'': 
+#                    print("receive:", data) 
+#                else: 
+#                    ser.write(hexsend(data)) 
+                time.sleep(0.001)
+    except KeyboardInterrupt: 
+        if serial != None: 
+            ser.close()
+
+def sys_init():
+
+    threads = []
+    t1 = threading.Thread(target=ser_init)
+    threads.append(t1)
+    t2 = threading.Thread(target=t_resolve)
+    threads.append(t2)
+    for t in threads:
+        t.setDaemon(True)
+        t.start()
+
+#sock_init(8888)
+sys_init()
 
 fig = plt.figure()
 ax = fig.add_subplot(321)
