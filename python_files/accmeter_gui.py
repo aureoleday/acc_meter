@@ -20,6 +20,10 @@ from matplotlib import animation
 
 SYNC_HEAD = b'\xdf\x1b\xdf\x9b'
 
+# 0 4000Hz
+# 1 2000Hz
+# 2 1000Hz
+# 3 500Hz
 # 4 250Hz
 # 5 125Hz
 # 6 62.5Hz
@@ -28,8 +32,8 @@ SYNC_HEAD = b'\xdf\x1b\xdf\x9b'
 # 9 7.813Hz
 # 10 3.906Hz
 
-FS = 31.25
-WINDOW_SIZE = 256
+FS = 125
+WINDOW_SIZE = 512
 
 rb = RingBuffer(WINDOW_SIZE,3)
 in_buf = []
@@ -120,10 +124,6 @@ def sock_init(port):
     for t in threads:
         t.setDaemon(True)
         t.start()
-#    tr.start()
-
-
-#    tr.start()
 
 def hexsend(string_data=''):
     hex_data = string_data.decode("hex")
