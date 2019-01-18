@@ -48,6 +48,10 @@ def func(a):
     temp = struct.unpack('i',struct.pack('L',temp))
     return temp[0]>>4
 
+    
+#def pkg_fsm():
+#    class fsm_st:
+#        def __init__(self,)
 
 def pkg_resolve():
 #    while True:
@@ -86,11 +90,54 @@ def pkg_resolve():
                                 rb.append(ret)
                             except:
                                 break;
-                            else:
-                                continue
+                        else:
+                            continue
                             axis = 0                
                     if j>5 and j >= 5+pkg_len*4:
-                        break                    
+                        break
+
+#def pkg_resolve():
+##    while True:
+#        arr = []
+#        xyz1 = []
+#        j = 0
+#        flag = 0
+#        axis = 0
+#        q_len = inb_q.qsize()
+#        if q_len != 0:
+#            for i in range(q_len):
+#                temp = inb_q.get(block=False)
+#                arr.append(temp)
+#                if i>=4:
+#                    if bytes(arr[i-4:i]) == SYNC_HEAD:
+#                        flag = 1
+#                if flag > 0:
+#                    j = j+1
+#                    if j == 5:                
+#                        CMD = int.from_bytes(bytes(arr[i-4:i]),byteorder='little', signed=False)
+#                        pkg_len = CMD&0x0ffff
+#                        xyz1 = []
+#                    elif j%4 == 1:
+#                        buf = int.from_bytes(bytes(arr[i-4:i]),byteorder='little', signed=False)
+#                        if buf&1 == 1:
+#                            axis = 1
+#                            xyz1 = []
+#                            xyz1.append(buf)
+#                        elif axis == 1:
+#                            xyz1.append(buf)
+#                            axis = axis + 1
+#                        elif axis == 2:
+#                            xyz1.append(buf)
+#                            ret = np.array(list(map(func,xyz1)))*gain
+#                            try:
+#                                rb.append(ret)
+#                            except:
+#                                break;
+#                            else:
+#                                continue
+#                            axis = 0                
+#                    if j>5 and j >= 5+pkg_len*4:
+#                        break                     
                     
 def t_resolve():
     while True:
@@ -142,29 +189,43 @@ def ser_init():
             if count > 0:
                 data = ser.read(count) 
                 inb_q.queue.extend(data)
-#                print("receive:", data)
-#                if data != b'': 
-#                    print("receive:", data) 
-#                else: 
-#                    ser.write(hexsend(data)) 
                 time.sleep(0.001)
     except KeyboardInterrupt: 
         if serial != None: 
             ser.close()
 
-def sys_init():
+def tcp_client_init(ip,port):
+    ser_ip = ip
+    ser_port = port
+    tcp_client = socket.socket(socket.AF_INET, socket.SOCK_STREAM)
+    try:
+        tcp_client.connect((ser_ip,ser_port))
+        print('connected')
+        while True:
+            data = tcp_client.recv(4096)
+            if data != '':
+                inb_q.queue.extend(data)
+            time.sleep(0.001)
+        tcp_client.close()
+        print('Connection closed.')
+    except socket.error:
+        print("fail to setup socket connection")
+    tcp_client.close()
+        
+
+def sys_init(mode,ip,port):
 
     threads = []
-    t1 = threading.Thread(target=ser_init)
+    if mode == 1:
+        t1 = threading.Thread(target=tcp_client_init,args=(ip,port))
+    elif mode == 2:
+        t1 = threading.Thread(target=ser_init)
     threads.append(t1)
     t2 = threading.Thread(target=t_resolve)
     threads.append(t2)
     for t in threads:
         t.setDaemon(True)
         t.start()
-
-#sock_init(8888)
-sys_init()
 
 fig = plt.figure()
 ax = fig.add_subplot(321)
@@ -184,6 +245,7 @@ liney, = bx.plot(x,np.sin(x),color='b')
 lineyf, = bf.plot(xh,np.sin(xh),color='b')
 linez, = cx.plot(x,np.sin(x),color='purple')
 linezf, = cf.plot(xh,np.sin(xh),color='purple')
+
 
 def gen_frames():
     yield 0
@@ -243,7 +305,11 @@ def initial():
     cf.set_ylabel("Amp-z")      
     return linex,
 
-ani = animation.FuncAnimation(fig=fig,func=update,frames=gen_frames,init_func=initial,interval=10,blit=False)
-
-plt.show()
+#sock_init(9996)
+try:
+    sys_init(mode=1,ip="192.168.4.1",port=9996)    
+    ani = animation.FuncAnimation(fig=fig,func=update,frames=gen_frames,init_func=initial,interval=10,blit=False)
+    plt.show()
+except KeyboardInterrupt:
+    pass
 
