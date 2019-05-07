@@ -242,7 +242,7 @@ def initial():
 try:    
     FS,LPF,HPF = calc_ord(FILTER_REG)
     print("FS:%.3f,LPF:%.3f,HPF:%.3f\n" % (FS,LPF,HPF))
-    sys_init(mode=1,ip="192.168.1.101",port=9996)
+    sys_init(mode=1,ip="192.168.1.102",port=9996)
 #    sys_init(mode=1,ip="192.168.4.1",port=9996) 
     ani = animation.FuncAnimation(fig=fig,func=update,frames=gen_frames,init_func=initial,interval=50,blit=False)
     plt.show()
