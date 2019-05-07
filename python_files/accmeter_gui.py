@@ -32,7 +32,7 @@ SYNC_HEAD = b'\xdf\x1b\xdf\x9b'
 # 9 7.813Hz
 # 10 3.906Hz
 
-FS = 125
+FS = 1000
 WINDOW_SIZE = 512
 
 rb = RingBuffer(WINDOW_SIZE,3)
@@ -302,12 +302,13 @@ def initial():
     cx.set_xlabel("time(s)")
     cf.set_ylim(-3000,3000)
     cf.set_xlabel("freq(Hz)")
-    cf.set_ylabel("Amp-z")      
+    cf.set_ylabel("Amp-z")
     return linex,
 
 #sock_init(9996)
 try:
-    sys_init(mode=1,ip="192.168.4.1",port=9996)    
+    sys_init(mode=1,ip="192.168.1.102",port=9996)
+#    sys_init(mode=1,ip="192.168.4.1",port=9996) 
     ani = animation.FuncAnimation(fig=fig,func=update,frames=gen_frames,init_func=initial,interval=10,blit=False)
     plt.show()
 except KeyboardInterrupt:

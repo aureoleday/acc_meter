@@ -22,16 +22,7 @@ class RingBuffer(object):
 
     def append(self, data):
         """this is an O(n) operation"""
-        np_data = np.array(data) 
-#        if len(np_data.shape)<1:
-#            try:
-#                np_data = np_data.reshape(1,self.dim)
-#            except:
-#                print('not enough element')
-#                np_data = np.zeros(self.dim).reshape(1,self.dim)
-#            else:
-#                np_data = np_data.reshape(1,self.dim)
-             
+        np_data = np.array(data)              
         np_data = np_data if (len(np_data.shape)>1) else np_data.reshape(1,self.dim)
         np_data = np_data[-self.padding:]
         n = np_data.shape[0]
@@ -59,8 +50,9 @@ if __name__ == '__main__':
     rb = RingBuffer(10,3)
     for i in range(4):
         rb.append([1,2,3])
-        print(rb.view)    
-    rb.append(np.arange(6).reshape(2,3))
-    print(rb.view)  #test overflow
+        print(rb.view)
+    for i in range(20):
+        rb.append((np.arange(6)*i).reshape(2,3))
+        print(rb.view)  #test overflow
 
 
