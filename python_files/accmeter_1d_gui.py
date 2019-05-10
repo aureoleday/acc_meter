@@ -133,22 +133,29 @@ pfsm = pkg_fsm()
 class my_mav(object):
     def __init__(self,row,col):
         self.mav_buf = np.zeros((int(row),int(col)))
+        self.acc_buf = np.zeros(int(col))
         self.row_ind = 0
-        self.cnt = 0
+        self.mav_cnt = 0
+        self.acc_cnt = 0
         self.row_max = row
         
-    def insert(self,din):
+    def acc_insert(self,din):
+        self.acc_buf += din
+        self.acc_cnt += 1
+        return self.acc_buf/self.acc_cnt
+        
+    def mav_insert(self,din):
         self.mav_buf[self.row_ind] = din
         self.row_ind += 1
         if(self.row_ind >= self.row_max):
             self.row_ind = 0
             
-        if(self.cnt < self.row_max):
-            self.cnt += 1
+        if(self.mav_cnt < self.row_max):
+            self.mav_cnt += 1
         else:
-            self.cnt = self.cnt
+            self.mav_cnt = self.mav_cnt
             
-        return self.mav_buf.sum(axis=0)/self.cnt
+        return self.mav_buf.sum(axis=0)/self.mav_cnt
 
 mav_inst = my_mav(FFT_MAV_LEN,(WINDOW_SIZE/2)+1)
     
@@ -248,7 +255,7 @@ def my_fft(din):
 def update(i):
     temp = rb.view
     habx_t = my_fft(temp[:,0])
-    habx = mav_inst.insert(habx_t)
+    habx = mav_inst.acc_insert(habx_t)
 
     linex.set_ydata(temp[:,0])
     ax.set_ylim(np.min(temp[:,0]),np.max(temp[:,0]))
