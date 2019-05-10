@@ -41,7 +41,8 @@ FILTER_REG = 64
 FS = 4000>>(FILTER_REG&0x0f)
 
 #FS = 4000
-WINDOW_SIZE = 32768
+WINDOW_SIZE = 2**12
+FFT_MAV_LEN = 8
 #WINDOW_SIZE = 1024
 
 fft_size = WINDOW_SIZE
@@ -127,7 +128,29 @@ class pkg_fsm(object):
 
             
 pfsm = pkg_fsm()
-                    
+                
+class my_mav(object):
+    def __init__(self,row,col):
+        self.mav_buf = np.zeros((int(row),int(col)))
+        self.row_ind = 0
+        self.cnt = 0
+        self.row_max = row
+        
+    def insert(self,din):
+        self.mav_buf[self.row_ind] = din
+        self.row_ind += 1
+        if(self.row_ind >= self.row_max):
+            self.row_ind = 0
+            
+        if(self.cnt < self.row_max):
+            self.cnt += 1
+        else:
+            self.cnt = self.cnt
+            
+        return self.mav_buf.sum(axis=0)/self.cnt
+
+mav_inst = my_mav(FFT_MAV_LEN,(WINDOW_SIZE/2)+1)
+    
 def t_resolve():
     while True:
         lenq = inb_q.qsize()
@@ -136,7 +159,7 @@ def t_resolve():
                 buf = inb_q.get(block=False)
                 pfsm.resolve(buf)
         else:
-            time.sleep(0.001)                   
+            time.sleep(0.01)                   
 
 def ser_init():
     ser = serial.Serial("com16",115200)
@@ -167,7 +190,7 @@ def tcp_client_init(ip,port):
             data = tcp_client.recv(4096)
             if data != '':
                 inb_q.queue.extend(data)                
-            time.sleep(0.002)
+            time.sleep(0.02)
         tcp_client.close()
         print('Connection closed.')
     except socket.error:
@@ -212,21 +235,21 @@ def choose_windows(name='Hanning', N=20): # Rect/Hanning/Hamming
     return window
 
 def my_fft(din):
-    temp = din[:fft_size]*choose_windows(name='Hanning',N=fft_size)
+#    temp = din[:fft_size]*choose_windows(name='Hanning',N=fft_size)
+    temp = din[:fft_size]
     fftx = np.fft.rfft(temp)/fft_size
     xfp = np.abs(fftx)*2
-    return xfp
+    tt = mav_inst.insert(xfp)
+    return tt
 
 def update(i):
     temp = rb.view
-    habx = my_fft(temp[:,0])
+    habx = my_fft(temp[:,0])    
 
     linex.set_ydata(temp[:,0])
     ax.set_ylim(np.min(temp[:,0]),np.max(temp[:,0]))
     linexf.set_ydata(habx)
-    af.set_ylim(np.min(habx),np.max(habx))
-        
-#    return linex,
+    af.set_ylim(np.min(habx),np.max(habx))        
 
 def initial():
     linex.set_ydata(np.sin(x))
@@ -242,7 +265,7 @@ def initial():
 try:    
     FS,LPF,HPF = calc_ord(FILTER_REG)
     print("FS:%.3f,LPF:%.3f,HPF:%.3f\n" % (FS,LPF,HPF))
-    sys_init(mode=1,ip="192.168.1.102",port=9996)
+    sys_init(mode=1,ip="192.168.1.100",port=9996)
 #    sys_init(mode=1,ip="192.168.4.1",port=9996) 
     ani = animation.FuncAnimation(fig=fig,func=update,frames=gen_frames,init_func=initial,interval=50,blit=False)
     plt.show()
