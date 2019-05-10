@@ -16,6 +16,7 @@ import numpy as np
 from ringbuf import RingBuffer
 import matplotlib.pyplot as plt 
 from matplotlib import animation
+from matplotlib.ticker import MultipleLocator, FormatStrFormatter
 
 FSM_IDLE = 0
 FSM_SYNC = 1
@@ -41,8 +42,8 @@ FILTER_REG = 64
 FS = 4000>>(FILTER_REG&0x0f)
 
 #FS = 4000
-WINDOW_SIZE = 2**12
-FFT_MAV_LEN = 32
+WINDOW_SIZE = 2**14
+FFT_MAV_LEN = 64
 #WINDOW_SIZE = 1024
 
 fft_size = WINDOW_SIZE
@@ -212,8 +213,10 @@ def sys_init(mode,ip,port):
         t.start()
 
 fig = plt.figure()
-ax = fig.add_subplot(211)
-af = fig.add_subplot(212)
+#ax = fig.add_subplot(211)
+#af = fig.add_subplot(212)
+ax = plt.subplot2grid((4,1),(0,0))
+af = plt.subplot2grid((4,1),(1,0),rowspan=3)
  
 x = np.arange(0,WINDOW_SIZE)/FS
 xh = np.arange(0,WINDOW_SIZE/2+1)*FS/WINDOW_SIZE
@@ -250,14 +253,18 @@ def update(i):
     linex.set_ydata(temp[:,0])
     ax.set_ylim(np.min(temp[:,0]),np.max(temp[:,0]))
     linexf.set_ydata(habx)
-    af.set_ylim(np.min(habx),np.max(habx))        
+    af.set_ylim(np.min(habx),np.max(habx))  
+#    af.set_ylim(0,0.00006)        
 
 def initial():
     linex.set_ydata(np.sin(x))
     linexf.set_ydata(np.zeros(int(WINDOW_SIZE/2 + 1)))
     ax.set_ylim(-3000,3000)
 #    ax.set_xlabel("time")
-    ax.set_ylabel("x(g)")
+    ax.set_ylabel("x(g)")    
+    
+    ax.grid(True, linestyle='-.')
+
     af.set_ylim(-3000,3000)
     af.grid(True, linestyle='-.')
 #    af.set_xlabel("freq")
