@@ -42,7 +42,7 @@ FS = 4000>>(FILTER_REG&0x0f)
 
 #FS = 4000
 WINDOW_SIZE = 2**12
-FFT_MAV_LEN = 8
+FFT_MAV_LEN = 32
 #WINDOW_SIZE = 1024
 
 fft_size = WINDOW_SIZE
@@ -235,16 +235,17 @@ def choose_windows(name='Hanning', N=20): # Rect/Hanning/Hamming
     return window
 
 def my_fft(din):
-#    temp = din[:fft_size]*choose_windows(name='Hanning',N=fft_size)
-    temp = din[:fft_size]
+    temp = din[:fft_size]*choose_windows(name='Hanning',N=fft_size)
+#    temp = din[:fft_size]
     fftx = np.fft.rfft(temp)/fft_size
     xfp = np.abs(fftx)*2
-    tt = mav_inst.insert(xfp)
-    return tt
+    return xfp
+
 
 def update(i):
     temp = rb.view
-    habx = my_fft(temp[:,0])    
+    habx_t = my_fft(temp[:,0])
+    habx = mav_inst.insert(habx_t)
 
     linex.set_ydata(temp[:,0])
     ax.set_ylim(np.min(temp[:,0]),np.max(temp[:,0]))
@@ -258,6 +259,7 @@ def initial():
 #    ax.set_xlabel("time")
     ax.set_ylabel("x(g)")
     af.set_ylim(-3000,3000)
+    af.grid(True, linestyle='-.')
 #    af.set_xlabel("freq")
     af.set_ylabel("Amp-x")
     return linex,
