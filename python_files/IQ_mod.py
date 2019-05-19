@@ -86,14 +86,14 @@ def my_fft(din):
 iq_mod_inst = iq_mod(SIG_FREQ,SAMPLE_FREQ,rep_N=16)
 #idi = np.random.randint(0,2,32)
 #idi = np.zeros(32)
-idi = np.tile(PN_CODE,3)
+idi = np.tile(PN_CODE,5)
 #idi = np.array([0,0,0,0,0,1,1,0,0,1,0,1,0])
 iqi = np.random.randint(0,2,idi.shape[0])
 idm,qdm = iq_mod_inst.apl_mod(idi,iqi)
 
-noise = np.random.randn(idm.shape[0])*4
+noise = np.random.randn(idm.shape[0])*8
 
-idm = idm + noise
+idm = idm*2 + noise
 
 di = iq_mod_inst.mix(idm)
 print("di len:%d\n" % di.shape[0])
@@ -126,10 +126,11 @@ ax.plot(x,idm,'y',label='i')
 ax.plot(x,qdm,'g',label='q')
 #idff = my_fft(idm)
 ax.legend()
-bx.plot(cor)
-cx.plot(di,label='di')
-cx.plot(zo,label='zo')
-cx.plot(zt,'r',label='zt')
+bx.plot(x,cor)
+bx.grid(True, linestyle='-.')
+cx.plot(x,di,label='di')
+cx.plot(x,zo,label='zo')
+cx.plot(x,zt,'r',label='zt')
 cx.legend()
 
 plt.show()

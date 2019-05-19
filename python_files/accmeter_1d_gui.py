@@ -254,13 +254,14 @@ def my_fft(din):
 def update(i):
     temp = rb.view
     habx_t = my_fft(temp[:,0])
-    habx = mav_inst.acc_insert(habx_t)
+#    habx = mav_inst.acc_insert(habx_t)
+    habx = mav_inst.mav_insert(habx_t)
 
     linex.set_ydata(temp[:,0])
     ax.set_ylim(np.min(temp[:,0]),np.max(temp[:,0]))
     linexf.set_ydata(habx)
-    af.set_ylim(np.min(habx),np.max(habx))  
-#    af.set_ylim(0,0.00006)        
+#    af.set_ylim(np.min(habx),np.max(habx))  
+    af.set_ylim(0,0.0002)        
 
 def initial():
     linex.set_ydata(np.sin(x))
@@ -280,7 +281,7 @@ def initial():
 try:    
     FS,LPF,HPF = calc_ord(FILTER_REG)
     print("FS:%.3f,LPF:%.3f,HPF:%.3f\n" % (FS,LPF,HPF))
-    sys_init(mode=1,ip="192.168.1.101",port=9996)
+    sys_init(mode=1,ip="192.168.1.104",port=9996)
 #    sys_init(mode=1,ip="192.168.4.1",port=9996) 
     ani = animation.FuncAnimation(fig=fig,func=update,frames=gen_frames,init_func=initial,interval=50,blit=False)
     plt.show()
