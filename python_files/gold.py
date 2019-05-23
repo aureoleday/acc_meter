@@ -114,14 +114,19 @@ def corr(seq1,seq2):
 
 
 if __name__ == "__main__":
-    init = [0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 1]
+#    init = [0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 1]
+#
+#    poly1 = [12, 10, 5, 4, 0]
+#    poly2 = [12,  8, 6, 5, 0]
 
-    poly1 = [12, 10, 5, 4, 0]
-    poly2 = [12,  8, 6, 5, 0]
+    init = np.zeros(5).astype(int).tolist()
+    init[-1] = 1
+    poly1 = [5, 2, 0]
+    poly2 = poly1
 
     gold = GoldSequence(poly1, init,
                         poly2, init,
-                        samples_per_frame=2**len(init)-1, index=0, matlab=True, debug=False)
+                        samples_per_frame=2**len(init)-1, index=0, matlab=True, debug=True)
 
     # Map (0, 1) -> (-1, 1) -> (-2047, 2047)
     gold_sequence = (2 * np.array(gold.step()) - 1)  # * (2**11-1)

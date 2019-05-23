@@ -13,6 +13,7 @@ import queue
 import serial
 
 import numpy as np
+from scipy import signal
 from ringbuf import RingBuffer
 import matplotlib.pyplot as plt 
 from matplotlib import animation
@@ -219,6 +220,16 @@ def sys_init(mode,ip,port):
         t.setDaemon(True)
         t.start()
 
+class my_filter:
+    def __init__(self,N,filt_zone=[0.2],filt_type='lowpass'):
+        self.b,self.a = signal.butter(N, filt_zone, filt_type)
+        self.z = np.zeros(max(len(self.a),len(self.b))-1,dtype=np.float)
+        
+    def filt(self,din):
+        dout, self.z = signal.lfilter(self.b, self.a, din, zi=self.z)
+        return dout
+
+
 fig = plt.figure()
 #ax = fig.add_subplot(211)
 #af = fig.add_subplot(212)
@@ -226,10 +237,12 @@ ax = plt.subplot2grid((4,1),(0,0))
 af = plt.subplot2grid((4,1),(1,0),rowspan=3)
  
 x = np.arange(0,WINDOW_SIZE)/FS
-xh = np.arange(0,WINDOW_SIZE/2+1)*FS/WINDOW_SIZE
+xh = np.arange(0,WINDOW_SIZE/2+1)*FS/(WINDOW_SIZE)
 
 linex, = ax.plot(x,np.sin(x),'r')
 linexf, = af.plot(xh,np.sin(xh),color = 'g',linestyle='-', marker=',')
+
+filt_inst = my_filter(3,[0.22,0.25],'bandpass')
 
 def gen_frames():
     yield 0
@@ -244,7 +257,7 @@ def choose_windows(name='Hanning', N=20): # Rect/Hanning/Hamming
     return window
 
 def my_fft(din):
-    temp = din[:fft_size]*choose_windows(name='Hanning',N=fft_size)
+    temp = din[:fft_size]*choose_windows(name='Hamming',N=fft_size)
 #    temp = din[:fft_size]
     fftx = np.fft.rfft(temp)/fft_size
     xfp = np.abs(fftx)*2
@@ -253,6 +266,7 @@ def my_fft(din):
 
 def update(i):
     temp = rb.view
+    temp[:,0] = filt_inst.filt(temp[:,0])
     habx_t = my_fft(temp[:,0])
 #    habx = mav_inst.acc_insert(habx_t)
     habx = mav_inst.mav_insert(habx_t)
@@ -261,7 +275,7 @@ def update(i):
     ax.set_ylim(np.min(temp[:,0]),np.max(temp[:,0]))
     linexf.set_ydata(habx)
 #    af.set_ylim(np.min(habx),np.max(habx))  
-    af.set_ylim(0,0.0002)        
+    af.set_ylim(0,0.0001)        
 
 def initial():
     linex.set_ydata(np.sin(x))
@@ -281,7 +295,7 @@ def initial():
 try:    
     FS,LPF,HPF = calc_ord(FILTER_REG)
     print("FS:%.3f,LPF:%.3f,HPF:%.3f\n" % (FS,LPF,HPF))
-    sys_init(mode=1,ip="192.168.1.104",port=9996)
+    sys_init(mode=1,ip="192.168.1.100",port=9996)
 #    sys_init(mode=1,ip="192.168.4.1",port=9996) 
     ani = animation.FuncAnimation(fig=fig,func=update,frames=gen_frames,init_func=initial,interval=50,blit=False)
     plt.show()

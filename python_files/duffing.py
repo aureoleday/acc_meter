@@ -102,28 +102,28 @@ for i in range(len(t)):
         k+=1
 
 t2 = time.time()
-print 'computation takes ',t2-t1,' seconds.'
+print('computation takes %d sec' % (t2-t1))
 
 plt.figure(1)
-plt.plot(t[-3000:],position[-3000:],'g-',linewidth=4.0)
-plt.title('Trajectory of the oscillator',{'fontsize':24})
-plt.xlabel('time',{'fontsize':24})
-plt.ylabel('Position',{'fontsize':24})
-plt.tick_params(axis='both',labelsize=24)
+plt.plot(t[-3000:],position[-3000:],'g-')
+plt.title('Trajectory of the oscillator')
+plt.xlabel('time')
+plt.ylabel('Position')
+plt.tick_params(axis='both')
 
 plt.figure(2)
-plt.plot(position[-3000:],velocity[-3000:],'r-',linewidth=4.0)
-plt.title('Phase space',{'fontsize':24})
+plt.plot(position[-3000:],velocity[-3000:],'r-')
+plt.title('Phase space')
 plt.xlim([-4.5,4.5])
-plt.xlabel('Position',{'fontsize':24})
-plt.ylabel('Momentum',{'fontsize':24})
-plt.tick_params(axis='both',labelsize=24)
+plt.xlabel('Position')
+plt.ylabel('Momentum')
+plt.tick_params(axis='both')
 
 plt.figure(3)
 plt.scatter(strange_attractor[:,0],strange_attractor[:,1])
-plt.xlabel('Position',{'fontsize':24})
-plt.ylabel('Momentum',{'fontsize':24})
-plt.title(r'Poincare Plot (Phase space at time = $\frac{2\pi N}{\omega}$, N = 1,2,3...)',{'fontsize':24})
-plt.tick_params(axis='both',labelsize=24)
+plt.xlabel('Position')
+plt.ylabel('Momentum')
+plt.title(r'Poincare Plot (Phase space at time = $\frac{2\pi N}{\omega}$, N = 1,2,3...)')
+plt.tick_params(axis='both')
 
 plt.show((1,2,3))

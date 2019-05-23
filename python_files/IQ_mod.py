@@ -8,29 +8,33 @@ Created on Wed May 15 16:35:41 2019
 import numpy as np
 from scipy import signal
 import matplotlib.pyplot as plt 
+import wave
+import struct
 
 SIG_FREQ = 500
 SAMPLE_FREQ = 4000
 
 #PN_CODE = np.array([1,1,1,1,1,-1,-1,1,1,-1,1,-1,1])
-PN_CODE = np.array([1,1,1,1,1,0,0,1,1,0,1,0,1])
+#PN_CODE = np.array([1,1,1,1,1,0,0,1,1,0,1,0,1])#BARK CODE
+PN_CODE = np.ones(13)
+#PN_CODE = np.array([1, 0, 0, 0, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, 1, 1, 0, 0, 0, 1, 0, 1, 1, 1, 0, 1, 0, 1, 1, 0, 1, 1, 0, 0, 0, 0, 0, 1, 1, 0, 0, 1, 1, 0, 1, 0, 1, 0, 0, 1, 1, 1, 0, 0, 1, 1, 1, 1, 0, 1, 1, 0, 1, 0, 0, 0, 0, 1, 0, 1, 0, 1, 0, 1, 1, 1, 1, 1, 0, 1, 0, 0, 1, 0, 1, 0, 0, 0, 1, 1, 0, 1, 1, 1, 0, 0, 0, 1, 1, 1, 1, 1, 1, 1, 0, 0, 0, 0, 1, 1, 1, 0, 1, 1, 1, 1, 0, 0, 1, 0, 1, 1, 0, 0, 1, 0, 0])#M CODE
+#PN_CODE = np.array([1, 0, 0, 0, 0, 1, 0, 0, 1, 0, 1, 1, 0, 0, 1, 1, 1, 1, 1, 0, 0, 0, 1, 1, 0, 1, 1, 1, 0, 1, 0])
+#PN_CODE = np.random.randint(0,2,16)#RANDOM CODE
 
 class iq_mod:
     def __init__(self,sig_freq=1000,sample_freq=32000,rep_N=8):
-        self.i_wave = np.kron(np.ones(rep_N),np.cos(2*np.pi*sig_freq*np.arange(sample_freq/sig_freq)/sample_freq))
-        self.q_wave = np.kron(np.ones(rep_N),np.sin(2*np.pi*sig_freq*np.arange(sample_freq/sig_freq)/sample_freq))
+        i_wave = np.kron(np.ones(rep_N),np.cos(2*np.pi*sig_freq*np.arange(sample_freq/sig_freq)/sample_freq))
+        q_wave = np.kron(np.ones(rep_N),np.sin(2*np.pi*sig_freq*np.arange(sample_freq/sig_freq)/sample_freq))
+        self.wave = np.vstack((i_wave,q_wave))
         self.period = int(sample_freq*rep_N/sig_freq)
     
-    def apl_mod(self,i_d,q_d):
-        i_data = np.kron((i_d*2 - 1),self.i_wave)
-        q_data = np.kron((q_d*2 - 1),self.q_wave)
-        return i_data,q_data    
+    def apl_mod(self,d_iq,mod=0):
+        if mod==1:
+            din = d_iq*2 - 1
+        return np.vstack((np.kron(din[0],self.wave[0]),np.kron(din[1],self.wave[1])))
 
-    def mix(self,din):
-        out = np.zeros(din.shape[0])
-        for i in range(din.shape[0]):
-            out[i] = din[i]*self.q_wave[(i+2)%self.period]
-        return out
+    def mix(self,d_iq,phase=0):
+        return d_iq*np.tile(np.roll(self.wave,phase,axis=1),int(np.ceil(d_iq.shape[1]/self.wave.shape[1])))
     
     def despread(self,din,code):
         out = np.zeros(din.shape[0])
@@ -78,60 +82,99 @@ def rrc(beta, filter_width, Ts):
             rrc_out[p] = (s + bt*c)/div
     return tuple(rrc_out)
 
+class my_filter:
+    def __init__(self,N,filt_zone=[0.2],filt_type='lowpass'):
+        self.b,self.a = signal.butter(N, filt_zone, filt_type)
+        self.z = np.zeros(max(len(self.a),len(self.b))-1,dtype=np.float)
+        
+    def filt(self,din):
+        dout, self.z = signal.lfilter(self.b, self.a, din, zi=self.z)
+        return dout
+        
+
 def my_fft(din):
     fftx = np.fft.rfft(din)/din.shape[0]
     xfp = np.abs(fftx)*2
     return xfp
 
-iq_mod_inst = iq_mod(SIG_FREQ,SAMPLE_FREQ,rep_N=16)
-#idi = np.random.randint(0,2,32)
-#idi = np.zeros(32)
-idi = np.tile(PN_CODE,5)
-#idi = np.array([0,0,0,0,0,1,1,0,0,1,0,1,0])
-iqi = np.random.randint(0,2,idi.shape[0])
-idm,qdm = iq_mod_inst.apl_mod(idi,iqi)
+iq_mod_inst = iq_mod(SIG_FREQ,SAMPLE_FREQ,rep_N=1)
+lpf_inst_i = my_filter(3,[0.15],'lowpass')
+lpf_inst_q = my_filter(3,0.15,'lowpass')
 
-noise = np.random.randn(idm.shape[0])*8
+din = np.tile(np.vstack((PN_CODE,PN_CODE)),5)
 
-idm = idm*2 + noise
+dm = iq_mod_inst.apl_mod(din,mod=1)
 
-di = iq_mod_inst.mix(idm)
-print("di len:%d\n" % di.shape[0])
+noise = np.random.randn(dm.shape[0],dm.shape[1])
 
-b, a = signal.butter(3, 0.15, 'lowpass')
-zt = signal.filtfilt(b,a,di)
+dmn = dm + noise*2
+dmn[1]=dmn[0]
 
-z = np.zeros(max(len(a),len(b))-1,dtype=np.float)
+dmm = iq_mod_inst.mix(dmn,1)
 
-z1, z = signal.lfilter(b, a, di[0:20], zi=z)
-z2, z = signal.lfilter(b, a, di[20:40], zi=z)
-z3, z = signal.lfilter(b, a, di[40:60], zi=z)
-z4, z = signal.lfilter(b, a, di[60:80], zi=z)
-z5, z = signal.lfilter(b, a, di[80:], zi=z)
+print("di len:%d\n" % din.shape[0])
+
+b, a = signal.butter(3, [0.15], 'lowpass')
+
+df = dmm[0]
+
+zt = signal.filtfilt(b,a,df)
+
+z1 = lpf_inst_i.filt(df[0:20])
+z2 = lpf_inst_i.filt(df[20:40])
+z3 = lpf_inst_i.filt(df[40:60])
+z4 = lpf_inst_i.filt(df[60:80])
+z5 = lpf_inst_i.filt(df[80:])
 
 zo = np.concatenate((z1,z2,z3,z4,z5))
-cor = iq_mod_inst.despread(zo,PN_CODE)
+
+cor_i = iq_mod_inst.despread(zo,PN_CODE)
+
+df = dmm[1]
+
+zt = signal.filtfilt(b,a,df)
+
+z1 = lpf_inst_q.filt(df[0:20])
+z2 = lpf_inst_q.filt(df[20:40])
+z3 = lpf_inst_q.filt(df[40:60])
+z4 = lpf_inst_q.filt(df[60:80])
+z5 = lpf_inst_q.filt(df[80:])
+
+zo = np.concatenate((z1,z2,z3,z4,z5))
+
+cor_q = iq_mod_inst.despread(zo,PN_CODE)
+
+cor = np.vstack((cor_i,cor_q))
 
 print("zi len:%d\n" % zo.shape[0])
 
 fig = plt.figure()
-ax = fig.add_subplot(311)
-bx = fig.add_subplot(312)
-cx = fig.add_subplot(313)
+ax = fig.add_subplot(411)
+bx = fig.add_subplot(412)
+cx = fig.add_subplot(413)
+dx = fig.add_subplot(414)
 
-x = np.arange(idm.shape[0])/SAMPLE_FREQ
-xh = np.arange(idm.shape[0]/2 + 1)*SAMPLE_FREQ/idm.shape[0]
+x = np.arange(dm.shape[1])/SAMPLE_FREQ
+xh = np.arange(dm.shape[1]/2 + 1)*SAMPLE_FREQ/dm.shape[1]
 
-ax.plot(x,idm,'y',label='i')
-ax.plot(x,qdm,'g',label='q')
-#idff = my_fft(idm)
+ax.plot(x,dmn[0],'y',label='idm')
+ax.plot(x,dmn[1],'g',label='qdm')
+
 ax.legend()
-bx.plot(x,cor)
+bx.plot(x,cor[0],label='cor_i')
+bx.plot(x,cor[1],label='cor_q')
+bx.plot(x,np.linalg.norm(cor,axis=0),label='norm')
 bx.grid(True, linestyle='-.')
-cx.plot(x,di,label='di')
+bx.legend()
+cx.plot(x,dmm[1],label='di')
 cx.plot(x,zo,label='zo')
 cx.plot(x,zt,'r',label='zt')
 cx.legend()
+#dx.plot(x,dm[0],label="di")
+#dx.plot(x,dm[1],label="dq")
+idff = my_fft(dmn[0])
+dx.plot(xh,idff,label="i_freq/amp")
+dx.legend()
 
 plt.show()
     
