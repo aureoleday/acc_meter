@@ -19,6 +19,7 @@ class RingBuffer(object):
         self.padding = size if padding is None else padding
         self.buffer = np.zeros((self.size+self.padding, dim))
         self.counter = 0
+        self.flag = 0
 
     def append(self, data):
         """this is an O(n) operation"""
@@ -30,6 +31,8 @@ class RingBuffer(object):
         self.buffer[self.counter+self.size:][:n] = np_data
         self.counter += n
 
+    def reset_flag(self):
+        self.flag = 0
     @property
     def remaining(self):
         return self.padding-self.counter
@@ -45,6 +48,7 @@ class RingBuffer(object):
         print('compacting')
         self.buffer[:self.size] = self.view
         self.counter = 0
+        self.flag = 1
 
 if __name__ == '__main__':
     rb = RingBuffer(10,3)

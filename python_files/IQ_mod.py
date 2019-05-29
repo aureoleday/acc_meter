@@ -8,6 +8,7 @@ Created on Wed May 15 16:35:41 2019
 import numpy as np
 from scipy import signal
 import matplotlib.pyplot as plt 
+import gold
 import wave
 import struct
 
@@ -16,10 +17,15 @@ SAMPLE_FREQ = 4000
 
 #PN_CODE = np.array([1,1,1,1,1,-1,-1,1,1,-1,1,-1,1])
 #PN_CODE = np.array([1,1,1,1,1,0,0,1,1,0,1,0,1])#BARK CODE
-PN_CODE = np.ones(13)
+#PN_CODE = np.ones(127)
 #PN_CODE = np.array([1, 0, 0, 0, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, 1, 1, 0, 0, 0, 1, 0, 1, 1, 1, 0, 1, 0, 1, 1, 0, 1, 1, 0, 0, 0, 0, 0, 1, 1, 0, 0, 1, 1, 0, 1, 0, 1, 0, 0, 1, 1, 1, 0, 0, 1, 1, 1, 1, 0, 1, 1, 0, 1, 0, 0, 0, 0, 1, 0, 1, 0, 1, 0, 1, 1, 1, 1, 1, 0, 1, 0, 0, 1, 0, 1, 0, 0, 0, 1, 1, 0, 1, 1, 1, 0, 0, 0, 1, 1, 1, 1, 1, 1, 1, 0, 0, 0, 0, 1, 1, 1, 0, 1, 1, 1, 1, 0, 0, 1, 0, 1, 1, 0, 0, 1, 0, 0])#M CODE
 #PN_CODE = np.array([1, 0, 0, 0, 0, 1, 0, 0, 1, 0, 1, 1, 0, 0, 1, 1, 1, 1, 1, 0, 0, 0, 1, 1, 0, 1, 1, 1, 0, 1, 0])
+#PN_CODE = np.array([1, 0, 0, 0, 0, 0, 0, 0, 1, 0, 0, 0, 1, 1, 1, 0, 0, 0, 1, 0, 0, 1, 0, 1, 1, 1, 0, 0, 0, 0, 0, 0, 1, 1, 0, 0, 1, 0, 0, 1, 0, 0, 1, 1, 0, 1, 1, 1, 0, 0, 1, 0, 0, 0, 0, 0, 1, 0, 1, 0, 1, 1, 0, 1, 1, 0, 1, 0, 1, 1, 0, 0, 1, 0, 1, 1, 0, 0, 0, 0, 1, 1, 1, 1, 1, 0, 1, 1, 0, 1, 1, 1, 1, 0, 1, 0, 1, 1, 1, 0, 1, 0, 0, 0, 1, 0, 0, 0, 0, 1, 1, 0, 1, 1, 0, 0, 0, 1, 1, 1, 1, 0, 0, 1, 1, 1, 0, 0, 1, 1, 0, 0, 0, 1, 0, 1, 1, 0, 1, 0, 0, 1, 0, 0, 0, 1, 0, 1, 0, 0, 1, 0, 1, 0, 1, 0, 0, 1, 1, 1, 0, 1, 1, 1, 0, 1, 1, 0, 0, 1, 1, 1, 1, 0, 1, 1, 1, 1, 1, 1, 0, 1, 0, 0, 1, 1, 0, 0, 1, 1, 0, 1, 0, 1, 0, 0, 0, 1, 1, 0, 0, 0, 0, 0, 1, 1, 1, 0, 1, 0, 1, 0, 1, 0, 1, 1, 1, 1, 1, 0, 0, 1, 0, 1, 0, 0, 0, 0, 1, 0, 0, 1, 1, 1, 1, 1, 1, 1, 1, 0, 0, 0, 0, 1, 0, 1, 1, 1, 1, 0, 0, 0, 1, 1, 0])
+PN_CODE = np.array([1, 0, 0, 0, 1, 1, 1, 1, 0, 1, 0, 1, 1, 0, 0])
+PN_CODE1 = np.array([1, 0, 0, 0, 1, 0, 0, 1, 1, 0, 1, 0, 1, 1, 1])
+#PN_CODEG = np.array([0, 0, 0, 0, 0, 1, 1, 0, 1, 1, 1, 1, 0, 1, 1])
 #PN_CODE = np.random.randint(0,2,16)#RANDOM CODE
+
 
 class iq_mod:
     def __init__(self,sig_freq=1000,sample_freq=32000,rep_N=8):
@@ -101,7 +107,10 @@ iq_mod_inst = iq_mod(SIG_FREQ,SAMPLE_FREQ,rep_N=1)
 lpf_inst_i = my_filter(3,[0.15],'lowpass')
 lpf_inst_q = my_filter(3,0.15,'lowpass')
 
-din = np.tile(np.vstack((PN_CODE,PN_CODE)),5)
+din = np.tile(np.vstack((PN_CODE,PN_CODE)),4)
+din2 = np.tile(np.vstack((PN_CODE1,PN_CODE1)),4)
+
+din = din + din2
 
 dm = iq_mod_inst.apl_mod(din,mod=1)
 
@@ -157,8 +166,9 @@ dx = fig.add_subplot(414)
 x = np.arange(dm.shape[1])/SAMPLE_FREQ
 xh = np.arange(dm.shape[1]/2 + 1)*SAMPLE_FREQ/dm.shape[1]
 
-ax.plot(x,dmn[0],'y',label='idm')
 ax.plot(x,dmn[1],'g',label='qdm')
+ax.plot(x,dm[0],'r',label='dm')
+
 
 ax.legend()
 bx.plot(x,cor[0],label='cor_i')

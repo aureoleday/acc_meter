@@ -23,7 +23,6 @@ FSM_IDLE = 0
 FSM_SYNC = 1
 FSM_DATA = 2
 
-
 SYNC_HEAD = b'\xdf\x1b\xdf\x9b'
 
 # 0 4000Hz
@@ -43,7 +42,7 @@ FILTER_REG = 64
 FS = 4000>>(FILTER_REG&0x0f)
 
 #FS = 4000
-WINDOW_SIZE = 2**14
+WINDOW_SIZE = 2**12
 FFT_MAV_LEN = 64
 #WINDOW_SIZE = 1024
 
@@ -157,6 +156,12 @@ class my_mav(object):
             self.mav_cnt = self.mav_cnt
             
         return self.mav_buf.sum(axis=0)/self.mav_cnt
+    
+    def get(self):
+        if self.mav_cnt>0:
+            return self.mav_buf.sum(axis=0)/self.mav_cnt
+        else:
+            return self.acc_buf/self.acc_cnt
 
 mav_inst = my_mav(FFT_MAV_LEN,(WINDOW_SIZE/2)+1)
     
@@ -257,36 +262,46 @@ def choose_windows(name='Hanning', N=20): # Rect/Hanning/Hamming
     return window
 
 def my_fft(din):
-    temp = din[:fft_size]*choose_windows(name='Hamming',N=fft_size)
+    temp = din[:fft_size]*choose_windows(name='Hanning',N=fft_size)
 #    temp = din[:fft_size]
     fftx = np.fft.rfft(temp)/fft_size
     xfp = np.abs(fftx)*2
     return xfp
 
-
 def update(i):
     temp = rb.view
-    temp[:,0] = filt_inst.filt(temp[:,0])
-    habx_t = my_fft(temp[:,0])
+#    print(rb.remaining)
+#    temp[:,0] = filt_inst.filt(temp[:,0])
 #    habx = mav_inst.acc_insert(habx_t)
-    habx = mav_inst.mav_insert(habx_t)
+#    habx_t = my_fft(temp[:,0])
+#    habx = mav_inst.mav_insert(habx_t)
 
     linex.set_ydata(temp[:,0])
     ax.set_ylim(np.min(temp[:,0]),np.max(temp[:,0]))
-    linexf.set_ydata(habx)
-#    af.set_ylim(np.min(habx),np.max(habx))  
-    af.set_ylim(0,0.0001)        
+    
+    if rb.flag == 1:        
+        habx_t = my_fft(temp[:,0])
+        habx_t[:10] = 0
+        habx = mav_inst.mav_insert(habx_t)
+#        rb.reset_flag()
+#    else:
+#        habx = mav_inst.get()
+        
+        linexf.set_ydata(habx)
+        af.set_ylim(np.min(habx),np.max(habx))  
+#        rb.reset_flag()
+#        af.set_ylim(0,0.0001)        
 
 def initial():
     linex.set_ydata(np.sin(x))
     linexf.set_ydata(np.zeros(int(WINDOW_SIZE/2 + 1)))
-    ax.set_ylim(-3000,3000)
+    ax.set_ylim(-3,3)
 #    ax.set_xlabel("time")
     ax.set_ylabel("x(g)")    
     
     ax.grid(True, linestyle='-.')
 
-    af.set_ylim(-3000,3000)
+    af.set_ylim(-1,1)
     af.grid(True, linestyle='-.')
 #    af.set_xlabel("freq")
     af.set_ylabel("Amp-x")
@@ -295,9 +310,9 @@ def initial():
 try:    
     FS,LPF,HPF = calc_ord(FILTER_REG)
     print("FS:%.3f,LPF:%.3f,HPF:%.3f\n" % (FS,LPF,HPF))
-    sys_init(mode=1,ip="192.168.1.100",port=9996)
+    sys_init(mode=1,ip="192.168.1.101",port=9996)
 #    sys_init(mode=1,ip="192.168.4.1",port=9996) 
-    ani = animation.FuncAnimation(fig=fig,func=update,frames=gen_frames,init_func=initial,interval=50,blit=False)
+    ani = animation.FuncAnimation(fig=fig,func=update,frames=gen_frames,init_func=initial,interval=100,blit=False)
     plt.show()
 except KeyboardInterrupt:
     pass
