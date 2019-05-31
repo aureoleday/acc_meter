@@ -37,13 +37,13 @@ SYNC_HEAD = b'\xdf\x1b\xdf\x9b'
 # 9 7.813Hz
 # 10 3.906Hz
 
-FILTER_REG = 64
+FILTER_REG = 80
 
 FS = 4000>>(FILTER_REG&0x0f)
 
 #FS = 4000
 WINDOW_SIZE = 2**12
-FFT_MAV_LEN = 64
+FFT_MAV_LEN = 32
 #WINDOW_SIZE = 1024
 
 fft_size = WINDOW_SIZE
@@ -157,8 +157,8 @@ class my_mav(object):
             
         return self.mav_buf.sum(axis=0)/self.mav_cnt
     
-    def get(self):
-        if self.mav_cnt>0:
+    def get(self,mtype='acc'):
+        if mtype=='mac':
             return self.mav_buf.sum(axis=0)/self.mav_cnt
         else:
             return self.acc_buf/self.acc_cnt
@@ -234,18 +234,17 @@ class my_filter:
         dout, self.z = signal.lfilter(self.b, self.a, din, zi=self.z)
         return dout
 
-
 fig = plt.figure()
-#ax = fig.add_subplot(211)
-#af = fig.add_subplot(212)
-ax = plt.subplot2grid((4,1),(0,0))
-af = plt.subplot2grid((4,1),(1,0),rowspan=3)
+ax = plt.subplot2grid((7,1),(0,0))
+af = plt.subplot2grid((7,1),(1,0),rowspan=3)
+afs = plt.subplot2grid((7,1),(4,0),rowspan=3)
  
 x = np.arange(0,WINDOW_SIZE)/FS
 xh = np.arange(0,WINDOW_SIZE/2+1)*FS/(WINDOW_SIZE)
 
-linex, = ax.plot(x,np.sin(x),'r')
-linexf, = af.plot(xh,np.sin(xh),color = 'g',linestyle='-', marker=',')
+linex, = ax.plot(x,np.sin(x),'g')
+linexf, = af.plot(xh,np.sin(xh),color = 'r',linestyle='-', marker=',')
+linexfs, = afs.plot(xh,np.sin(xh),color = 'b',linestyle='-', marker=',')
 
 filt_inst = my_filter(3,[0.22,0.25],'bandpass')
 
@@ -270,47 +269,49 @@ def my_fft(din):
 
 def update(i):
     temp = rb.view
-#    print(rb.remaining)
-#    temp[:,0] = filt_inst.filt(temp[:,0])
-#    habx = mav_inst.acc_insert(habx_t)
-#    habx_t = my_fft(temp[:,0])
-#    habx = mav_inst.mav_insert(habx_t)
 
     linex.set_ydata(temp[:,0])
-    ax.set_ylim(np.min(temp[:,0]),np.max(temp[:,0]))
+    ax.set_ylim(np.min(temp[:,0]),np.max(temp[:,0]))       
+      
+    habx_t = my_fft(temp[:,0])
+    habx = mav_inst.mav_insert(habx_t)
+    linexf.set_ydata(habx)
+    af.set_ylim(np.min(habx),np.max(habx))  
     
-    if rb.flag == 1:        
-        habx_t = my_fft(temp[:,0])
-        habx_t[:10] = 0
-        habx = mav_inst.mav_insert(habx_t)
-#        rb.reset_flag()
-#    else:
-#        habx = mav_inst.get()
-        
-        linexf.set_ydata(habx)
-        af.set_ylim(np.min(habx),np.max(habx))  
-#        rb.reset_flag()
-#        af.set_ylim(0,0.0001)        
+    if rb.flag == 1:
+        habx_acc = mav_inst.acc_insert(habx_t)
+        linexfs.set_ydata(habx_acc)
+        afs.set_ylim(np.min(habx_acc),np.max(habx_acc))
+        rb.reset_flag()
+    else:
+        habx_acc = mav_inst.get('acc')
+        linexfs.set_ydata(habx_acc)
+        afs.set_ylim(np.min(habx_acc),np.max(habx_acc))
 
 def initial():
     linex.set_ydata(np.sin(x))
     linexf.set_ydata(np.zeros(int(WINDOW_SIZE/2 + 1)))
     ax.set_ylim(-3,3)
-#    ax.set_xlabel("time")
+    ax.set_xlabel("time")
     ax.set_ylabel("x(g)")    
     
     ax.grid(True, linestyle='-.')
 
     af.set_ylim(-1,1)
     af.grid(True, linestyle='-.')
-#    af.set_xlabel("freq")
-    af.set_ylabel("Amp-x")
+    af.set_xlabel("Freq(Hz)")
+    af.set_ylabel("Amp-z")
+    
+    afs.set_ylim(-1,1)
+    afs.grid(True, linestyle='-.')
+    afs.set_xlabel("Freq(Hz)")
+    afs.set_ylabel("Amp-zs")    
     return linex,
 
 try:    
     FS,LPF,HPF = calc_ord(FILTER_REG)
     print("FS:%.3f,LPF:%.3f,HPF:%.3f\n" % (FS,LPF,HPF))
-    sys_init(mode=1,ip="192.168.1.101",port=9996)
+    sys_init(mode=1,ip="192.168.1.100",port=9996)
 #    sys_init(mode=1,ip="192.168.4.1",port=9996) 
     ani = animation.FuncAnimation(fig=fig,func=update,frames=gen_frames,init_func=initial,interval=100,blit=False)
     plt.show()
