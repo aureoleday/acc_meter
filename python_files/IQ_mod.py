@@ -8,6 +8,7 @@ Created on Wed May 15 16:35:41 2019
 import numpy as np
 from scipy import signal
 import matplotlib.pyplot as plt 
+import rcos
 import gold
 import wave
 import struct
@@ -21,14 +22,14 @@ SAMPLE_FREQ = 4000
 #PN_CODE = np.array([1, 0, 0, 0, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, 1, 1, 0, 0, 0, 1, 0, 1, 1, 1, 0, 1, 0, 1, 1, 0, 1, 1, 0, 0, 0, 0, 0, 1, 1, 0, 0, 1, 1, 0, 1, 0, 1, 0, 0, 1, 1, 1, 0, 0, 1, 1, 1, 1, 0, 1, 1, 0, 1, 0, 0, 0, 0, 1, 0, 1, 0, 1, 0, 1, 1, 1, 1, 1, 0, 1, 0, 0, 1, 0, 1, 0, 0, 0, 1, 1, 0, 1, 1, 1, 0, 0, 0, 1, 1, 1, 1, 1, 1, 1, 0, 0, 0, 0, 1, 1, 1, 0, 1, 1, 1, 1, 0, 0, 1, 0, 1, 1, 0, 0, 1, 0, 0])#M CODE
 #PN_CODE = np.array([1, 0, 0, 0, 0, 1, 0, 0, 1, 0, 1, 1, 0, 0, 1, 1, 1, 1, 1, 0, 0, 0, 1, 1, 0, 1, 1, 1, 0, 1, 0])
 #PN_CODE = np.array([1, 0, 0, 0, 0, 0, 0, 0, 1, 0, 0, 0, 1, 1, 1, 0, 0, 0, 1, 0, 0, 1, 0, 1, 1, 1, 0, 0, 0, 0, 0, 0, 1, 1, 0, 0, 1, 0, 0, 1, 0, 0, 1, 1, 0, 1, 1, 1, 0, 0, 1, 0, 0, 0, 0, 0, 1, 0, 1, 0, 1, 1, 0, 1, 1, 0, 1, 0, 1, 1, 0, 0, 1, 0, 1, 1, 0, 0, 0, 0, 1, 1, 1, 1, 1, 0, 1, 1, 0, 1, 1, 1, 1, 0, 1, 0, 1, 1, 1, 0, 1, 0, 0, 0, 1, 0, 0, 0, 0, 1, 1, 0, 1, 1, 0, 0, 0, 1, 1, 1, 1, 0, 0, 1, 1, 1, 0, 0, 1, 1, 0, 0, 0, 1, 0, 1, 1, 0, 1, 0, 0, 1, 0, 0, 0, 1, 0, 1, 0, 0, 1, 0, 1, 0, 1, 0, 0, 1, 1, 1, 0, 1, 1, 1, 0, 1, 1, 0, 0, 1, 1, 1, 1, 0, 1, 1, 1, 1, 1, 1, 0, 1, 0, 0, 1, 1, 0, 0, 1, 1, 0, 1, 0, 1, 0, 0, 0, 1, 1, 0, 0, 0, 0, 0, 1, 1, 1, 0, 1, 0, 1, 0, 1, 0, 1, 1, 1, 1, 1, 0, 0, 1, 0, 1, 0, 0, 0, 0, 1, 0, 0, 1, 1, 1, 1, 1, 1, 1, 1, 0, 0, 0, 0, 1, 0, 1, 1, 1, 1, 0, 0, 0, 1, 1, 0])
-PN_CODE = np.array([1, 0, 0, 0, 1, 1, 1, 1, 0, 1, 0, 1, 1, 0, 0])
-PN_CODE1 = np.array([1, 0, 0, 0, 1, 0, 0, 1, 1, 0, 1, 0, 1, 1, 1])
+PN_CODE = np.array([1, 0, 0, 0, 0, 1, 0, 0, 1, 0, 1, 1, 0, 0, 1, 1, 1, 1, 1, 0, 0, 0, 1, 1, 0, 1, 1, 1, 0, 1, 0])
+PN_CODE1 = np.array([1, 0, 0, 0, 0, 1, 1, 0, 0, 1, 0, 0, 1, 1, 1, 1, 1, 0, 1, 1, 1, 0, 0, 0, 1, 0, 1, 0, 1, 1, 0])
 #PN_CODEG = np.array([0, 0, 0, 0, 0, 1, 1, 0, 1, 1, 1, 1, 0, 1, 1])
 #PN_CODE = np.random.randint(0,2,16)#RANDOM CODE
 
 
 class iq_mod:
-    def __init__(self,sig_freq=1000,sample_freq=32000,rep_N=8):
+    def __init__(self,sig_freq=1000,sample_freq=32000,rep_N=8,beta=0.3,sps=4,span=1):
         i_wave = np.kron(np.ones(rep_N),np.cos(2*np.pi*sig_freq*np.arange(sample_freq/sig_freq)/sample_freq))
         q_wave = np.kron(np.ones(rep_N),np.sin(2*np.pi*sig_freq*np.arange(sample_freq/sig_freq)/sample_freq))
         self.wave = np.vstack((i_wave,q_wave))
@@ -51,42 +52,42 @@ class iq_mod:
             out[i] = np.dot(din[i-intp_code.shape[0]:i],intp_code)
         return out  
 
-def rrc(beta, filter_width, Ts):
-    """
-    https://en.wikipedia.org/wiki/Root-raised-cosine_filter 
-    :param beta: roll-off factor
-    :param filter_width: The width of the filter, samples
-    :param Ts: The width of a symbol, samples
-    :return: impulse response of the filter, the tuple of filter_width float numbers coefficients
-    """
-    rrc_out = []
-    for i in range(0, filter_width):
-        rrc_out.append(0.0)
-    if beta != 0.0:
-        t1 = Ts/(4*beta)
-    else:
-        t1 = Ts
-
-    for p in range(0, filter_width):
-        t = (p - filter_width / 2)
-        if t == 0.0:
-            rrc_out[p] = (1 + beta*(4/np.pi - 1))
-        elif t == t1 or t == -t1:
-            if beta != 0.0:
-                arg = np.pi/(4*beta)
-                s = (1 + 2/np.pi)*np.sin(arg)
-                c = (1 - 2/np.pi)*np.cos(arg)
-                rrc_out[p] = (s + c) * (beta/np.sqrt(2))
-            else:
-                rrc_out[p] = 0
-        else:
-            pts = np.pi*t/Ts
-            bt = 4*beta*t/Ts
-            s = np.sin(pts*(1-beta))
-            c = np.cos(pts*(1+beta))
-            div = pts*(1 - bt*bt)
-            rrc_out[p] = (s + bt*c)/div
-    return tuple(rrc_out)
+#def rrc(beta, filter_width, Ts):
+#    """
+#    https://en.wikipedia.org/wiki/Root-raised-cosine_filter 
+#    :param beta: roll-off factor
+#    :param filter_width: The width of the filter, samples
+#    :param Ts: The width of a symbol, samples
+#    :return: impulse response of the filter, the tuple of filter_width float numbers coefficients
+#    """
+#    rrc_out = []
+#    for i in range(0, filter_width):
+#        rrc_out.append(0.0)
+#    if beta != 0.0:
+#        t1 = Ts/(4*beta)
+#    else:
+#        t1 = Ts
+#
+#    for p in range(0, filter_width):
+#        t = (p - filter_width / 2)
+#        if t == 0.0:
+#            rrc_out[p] = (1 + beta*(4/np.pi - 1))
+#        elif t == t1 or t == -t1:
+#            if beta != 0.0:
+#                arg = np.pi/(4*beta)
+#                s = (1 + 2/np.pi)*np.sin(arg)
+#                c = (1 - 2/np.pi)*np.cos(arg)
+#                rrc_out[p] = (s + c) * (beta/np.sqrt(2))
+#            else:
+#                rrc_out[p] = 0
+#        else:
+#            pts = np.pi*t/Ts
+#            bt = 4*beta*t/Ts
+#            s = np.sin(pts*(1-beta))
+#            c = np.cos(pts*(1+beta))
+#            div = pts*(1 - bt*bt)
+#            rrc_out[p] = (s + bt*c)/div
+#    return tuple(rrc_out)        
 
 class my_filter:
     def __init__(self,N,filt_zone=[0.2],filt_type='lowpass'):
@@ -95,8 +96,7 @@ class my_filter:
         
     def filt(self,din):
         dout, self.z = signal.lfilter(self.b, self.a, din, zi=self.z)
-        return dout
-        
+        return dout        
 
 def my_fft(din):
     fftx = np.fft.rfft(din)/din.shape[0]
@@ -107,16 +107,18 @@ iq_mod_inst = iq_mod(SIG_FREQ,SAMPLE_FREQ,rep_N=1)
 lpf_inst_i = my_filter(3,[0.15],'lowpass')
 lpf_inst_q = my_filter(3,0.15,'lowpass')
 
-din = np.tile(np.vstack((PN_CODE,PN_CODE)),4)
-din2 = np.tile(np.vstack((PN_CODE1,PN_CODE1)),4)
+din1 = np.tile(np.vstack((PN_CODE,PN_CODE)),4)
+#din2 = np.tile(np.vstack((PN_CODE1,PN_CODE1)),4)
+din2 = din1
 
-din = din + din2
+
+din = din1 + din2
 
 dm = iq_mod_inst.apl_mod(din,mod=1)
 
 noise = np.random.randn(dm.shape[0],dm.shape[1])
 
-dmn = dm + noise*2
+dmn = dm + noise*0
 dmn[1]=dmn[0]
 
 dmm = iq_mod_inst.mix(dmn,1)

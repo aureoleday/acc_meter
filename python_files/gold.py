@@ -118,10 +118,10 @@ if __name__ == "__main__":
 #
 #    poly1 = [12, 10, 5, 4, 0]
 #    poly2 = [12,  8, 6, 5, 0]
-    init = np.zeros(6).astype(int).tolist()
+    init = np.zeros(5).astype(int).tolist()
     init[-1] = 1
-    poly1 = [6, 5,  0]
-    poly2 = [6, 1,  0]
+    poly1 = [5, 2,  0]
+    poly2 = [5,4,3, 2,  0]
 
     gold = GoldSequence(poly1, init,
                         poly2, init,
