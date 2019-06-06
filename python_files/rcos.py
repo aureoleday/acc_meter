@@ -43,11 +43,13 @@ class my_rcc:
         return self.b
     
     def rcc_lfilt(self,din):
-        dout, self.z = signal.lfilter(self.b, np.sqrt(self.sps), din, zi=self.z)
+        dout, self.z = signal.lfilter(self.b,  np.sqrt(self.sps), din, zi=self.z)
+#        dout, self.z = signal.lfilter(self.b, np.sqrt(self.sps), din, zi=self.z)
         return dout
     
     def rcc_filt(self,din):
-        dout = signal.filtfilt(self.b, np.sqrt(self.sps), din)
+        dout = signal.filtfilt(self.b,np.sqrt(self.sps), din)
+#        dout = signal.filtfilt(self.b, np.sqrt(self.sps), din)
         return dout
 
 if __name__ == "__main__":

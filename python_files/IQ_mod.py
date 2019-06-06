@@ -43,6 +43,10 @@ class iq_mod:
     def mix(self,d_iq,phase=0):
         return d_iq*np.tile(np.roll(self.wave,phase,axis=1),int(np.ceil(d_iq.shape[1]/self.wave.shape[1])))
     
+    def spread(self,din,code):        
+        return np.kron((din-0.5)*2,code)
+    
+    
     def despread(self,din,code):
         out = np.zeros(din.shape[0])
         code_p = code*2 -1
