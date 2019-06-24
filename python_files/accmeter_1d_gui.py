@@ -40,7 +40,8 @@ SYNC_HEAD = b'\xdf\x1b\xdf\x9b'
 FILTER_REG = 80
 
 FS = 4000>>(FILTER_REG&0x0f)
-
+TARGET_FREQ = 470
+FREQ_SPAN = 30
 #FS = 4000
 WINDOW_SIZE = 2**12
 FFT_MAV_LEN = 32
@@ -267,6 +268,20 @@ def my_fft(din):
     xfp = np.abs(fftx)*2
     return xfp
 
+def goertzel(din,k,N):
+    win = choose_windows('Hanning',N)
+    w = 2*np.pi*k/N
+    coef = 2*np.cos(w)
+    print("w:%f,coef:%f\n"%(w,coef))
+    q1=0
+    q2=0
+    for i in range(N):
+        x = din[i]*win[i]
+        q0 = coef*q1 - q2 + x
+        q2 = q1
+        q1 = q0
+    return np.sqrt(q1**2 + q2**2 - q1*q2*coef)*2/N
+
 def update(i):
     temp = rb.view
 
@@ -274,6 +289,7 @@ def update(i):
     ax.set_ylim(np.min(temp[:,0]),np.max(temp[:,0]))       
       
     habx_t = my_fft(temp[:,0])
+    habx_t[:250] = 0.000005
     habx = mav_inst.mav_insert(habx_t)
     linexf.set_ydata(habx)
     af.set_ylim(np.min(habx),np.max(habx))  
@@ -286,7 +302,7 @@ def update(i):
     else:
         habx_acc = mav_inst.get('acc')
         linexfs.set_ydata(habx_acc)
-        afs.set_ylim(np.min(habx_acc),np.max(habx_acc))
+        afs.set_ylim(np.min(habx_acc),np.max(habx_acc))    
 
 def initial():
     linex.set_ydata(np.sin(x))
@@ -311,7 +327,7 @@ def initial():
 try:    
     FS,LPF,HPF = calc_ord(FILTER_REG)
     print("FS:%.3f,LPF:%.3f,HPF:%.3f\n" % (FS,LPF,HPF))
-    sys_init(mode=1,ip="192.168.1.100",port=9996)
+    sys_init(mode=1,ip="192.168.1.102",port=9996)
 #    sys_init(mode=1,ip="192.168.4.1",port=9996) 
     ani = animation.FuncAnimation(fig=fig,func=update,frames=gen_frames,init_func=initial,interval=100,blit=False)
     plt.show()

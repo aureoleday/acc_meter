@@ -44,7 +44,7 @@ def goertzel(din,k,N):
 m = np.cos(2*np.pi*sig_freq*np.arange(N*2)/sample_freq)
 cn = np.cos(2*np.pi*noise_freq*np.arange(N*2)/sample_freq)
 wn = np.random.randn(2*N)
-cs = m*1+cn+wn*1
+cs = m*1+cn+wn*0
 x = np.arange(m.shape[0])/sample_freq
 #fig = plt.figure()
 #ax = fig.add_subplot(211)

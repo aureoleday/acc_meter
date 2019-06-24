@@ -19,7 +19,7 @@ PN_CODE = np.array([1, 0, 0, 0, 0, 1, 0, 0, 1, 0, 1, 1, 0, 0, 1, 1, 1, 1, 1, 0, 
 PN_CODE = (PN_CODE-0.5)*2
 
 #generate baseband signal
-base_sig = (np.random.randint(0,2,32)-0.5)*2
+base_sig = (np.random.randint(0,2,2)-0.5)*2
 base_up_sig = np.kron(base_sig,np.append(1,np.zeros(SPS-1)))
 base_up_sig = np.kron(base_up_sig,np.ones_like(PN_CODE))*8
 
