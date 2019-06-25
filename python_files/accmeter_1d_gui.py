@@ -66,7 +66,7 @@ def calc_ord(reg_val):
 
 
 def func(a):
-    temp = struct.unpack('f',struct.pack('L',a))
+    temp = struct.unpack('f',struct.pack('I',a))
     return temp    
 
 def checksum(arr_in):
@@ -327,7 +327,7 @@ def initial():
 try:    
     FS,LPF,HPF = calc_ord(FILTER_REG)
     print("FS:%.3f,LPF:%.3f,HPF:%.3f\n" % (FS,LPF,HPF))
-    sys_init(mode=1,ip="192.168.1.102",port=9996)
+    sys_init(mode=1,ip="192.168.1.100",port=9996)
 #    sys_init(mode=1,ip="192.168.4.1",port=9996) 
     ani = animation.FuncAnimation(fig=fig,func=update,frames=gen_frames,init_func=initial,interval=100,blit=False)
     plt.show()
