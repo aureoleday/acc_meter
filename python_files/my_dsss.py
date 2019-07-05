@@ -10,16 +10,17 @@ import rcos
 from scipy import signal
 import matplotlib.pyplot as plt 
 
-SPS = 4
+SPS = 8
 #PN_CODE = np.array([1,1,1,1,1,0,0,1,1,0,1,0,1])#BARK CODE[1, 0, 0, 0, 0, 1, 1, 1, 0, 0, 1, 1, 0, 1, 1, 1, 1, 1, 0, 1, 0, 0, 0, 1, 0, 0, 1, 0, 1, 0, 1]
 #PN_CODE = np.array([1, 0, 0, 0, 0, 0, 1, 1, 1, 1, 0, 0, 1, 0, 0, 1, 0, 1, 0, 1, 0, 0, 1, 1, 0, 1, 0, 0, 0, 0, 1, 0, 0, 0, 1, 0, 1, 1, 0, 1, 1, 1, 1, 1, 1, 0, 1, 0, 1, 1, 1, 0, 0, 0, 1, 1, 0, 0, 1, 1, 1, 0, 1])
-#PN_CODE = np.array([1, 0, 0, 0, 0, 0, 0, 1, 1, 1, 1, 1, 1, 1, 0, 1, 0, 1, 0, 1, 0, 0, 1, 1, 0, 0, 1, 1, 1, 0, 1, 1, 1, 0, 1, 0, 0, 1, 0, 1, 1, 0, 0, 0, 1, 1, 0, 1, 1, 1, 1, 0, 1, 1, 0, 1, 0, 1, 1, 0, 1, 1, 0, 0, 1, 0, 0, 1, 0, 0, 0, 1, 1, 1, 0, 0, 0, 0, 1, 0, 1, 1, 1, 1, 1, 0, 0, 1, 0, 1, 0, 1, 1, 1, 0, 0, 1, 1, 0, 1, 0, 0, 0, 1, 0, 0, 1, 1, 1, 1, 0, 0, 0, 1, 0, 1, 0, 0, 0, 0, 1, 1, 0, 0, 0, 0, 0])
+PN_CODE = np.array([1, 0, 0, 0, 0, 0, 0, 1, 1, 1, 1, 1, 1, 1, 0, 1, 0, 1, 0, 1, 0, 0, 1, 1, 0, 0, 1, 1, 1, 0, 1, 1, 1, 0, 1, 0, 0, 1, 0, 1, 1, 0, 0, 0, 1, 1, 0, 1, 1, 1, 1, 0, 1, 1, 0, 1, 0, 1, 1, 0, 1, 1, 0, 0, 1, 0, 0, 1, 0, 0, 0, 1, 1, 1, 0, 0, 0, 0, 1, 0, 1, 1, 1, 1, 1, 0, 0, 1, 0, 1, 0, 1, 1, 1, 0, 0, 1, 1, 0, 1, 0, 0, 0, 1, 0, 0, 1, 1, 1, 1, 0, 0, 0, 1, 0, 1, 0, 0, 0, 0, 1, 1, 0, 0, 0, 0, 0])
 #PN_CODE = np.array([1, 0, 0, 0, 0, 1, 1, 1, 0, 0, 1, 1, 0, 1, 1, 1, 1, 1, 0, 1, 0, 0, 0, 1, 0, 0, 1, 0, 1, 0, 1])
-PN_CODE = np.array([1, 0, 0, 0, 0, 1, 0, 0, 1, 0, 1, 1, 0, 0, 1, 1, 1, 1, 1, 0, 0, 0, 1, 1, 0, 1, 1, 1, 0, 1, 0])
+#PN_CODE = np.array([1, 0, 0, 0, 0, 1, 0, 0, 1, 0, 1, 1, 0, 0, 1, 1, 1, 1, 1, 0, 0, 0, 1, 1, 0, 1, 1, 1, 0, 1, 0])
 PN_CODE = (PN_CODE-0.5)*2
 
+print("pn code len:%d" % PN_CODE.shape[0])
 #generate baseband signal
-base_sig = (np.random.randint(0,2,2)-0.5)*2
+base_sig = (np.random.randint(0,2,6)-0.5)*2
 base_up_sig = np.kron(base_sig,np.append(1,np.zeros(SPS-1)))
 base_up_sig = np.kron(base_up_sig,np.ones_like(PN_CODE))*8
 
@@ -61,10 +62,13 @@ fig = plt.figure()
 
 ax = fig.add_subplot(311)
 ax.plot(spread_sig)
+#ax.plot(upsampel_sig)
+ax.set_title("spread_sig")
 bx = fig.add_subplot(312)
 bx.plot(shape_filtered,label="srcc")
 bx.plot(shape_filtered2,label="rcc")
 bx.legend()
+bx.set_title("filtered")
 cx = fig.add_subplot(313)
 cx.plot(shape_filtered2*10,label='rx')
 cx.plot(despread_d,label='dspread')
