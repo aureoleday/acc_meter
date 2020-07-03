@@ -23,7 +23,7 @@ FSM_IDLE = 0
 FSM_SYNC = 1
 FSM_DATA = 2
 
-SYNC_HEAD = b'\xdf\x1b\xdf\x9b'
+SYNC_HEAD = b'\x9b\xdf'
 
 # 0 4000Hz
 # 1 2000Hz
@@ -43,7 +43,7 @@ FS = 4000>>(FILTER_REG&0x0f)
 TARGET_FREQ = 470
 FREQ_SPAN = 30
 #FS = 4000
-WINDOW_SIZE = 2**12
+WINDOW_SIZE = 2**14
 FFT_MAV_LEN = 32
 #WINDOW_SIZE = 1024
 
@@ -71,7 +71,7 @@ def func(a):
 
 def checksum(arr_in):
     xsum = 0
-    for item in arr_in:
+    for item in arr_in[2:]:
         xsum ^=item
     return xsum
 
@@ -84,20 +84,22 @@ class pkg_fsm(object):
     
     def resolve(self,din):
         self.arr.append(din)
+        # print(bytes(self.arr[-2:]))
         if self.cstate == FSM_IDLE:
-            if(bytes(self.arr[-4:]) == SYNC_HEAD):
+            if(bytes(self.arr[-2:]) == SYNC_HEAD):
+                # print("OK")
                 self.frame = []
-                self.frame.append(int.from_bytes(bytes(SYNC_HEAD),byteorder='little', signed=False))
+                self.frame.append(int.from_bytes(bytes(SYNC_HEAD),byteorder='big', signed=False))
                 self.cstate = FSM_SYNC
                 self.i_cnt = 0
             else:
-                if(self.i_cnt >4):
+                if(self.i_cnt >0):
                     print("drop\n")
                 self.i_cnt += 1
                 self.cstate = FSM_IDLE
         elif self.cstate == FSM_SYNC:
-            if(self.i_cnt >= 3):
-                CMD = int.from_bytes(bytes(self.arr[-4:]),byteorder='little', signed=False)
+            if(self.i_cnt >= 1):
+                CMD = int.from_bytes(bytes(self.arr[-2:]),byteorder='big', signed=False)
                 self.frame.append(CMD)
                 self.cstate = FSM_DATA
                 self.i_cnt = 0
@@ -105,28 +107,27 @@ class pkg_fsm(object):
                 self.i_cnt += 1
                 self.cstate = FSM_SYNC
         elif self.cstate == FSM_DATA:
-            off = (self.i_cnt>>2)
-            if(self.i_cnt&0x03 == 3):
-                if(off >= ((self.frame[1]&0x0ffff))):         
-                    buf = int.from_bytes(bytes(self.arr[-4:]),byteorder='little', signed=False)
-                    self.frame.append(buf)
-                    if(checksum(self.frame) != 0):
-                        print("chk erro")
-                        for item in self.frame:
-                            print(" %x " % item)
-                    self.arr = []
-                    self.frame = []
-                    self.i_cnt = 0
-                    self.cstate = FSM_IDLE        
+            # off = (self.i_cnt>>2)
+            # print(bytes(self.frame[0]))
+            if(self.i_cnt&0x0003 == 0):
+                if(self.i_cnt == 0):
+                    self.i_cnt += 1 
                 else:
                     buf = int.from_bytes(bytes(self.arr[-4:]),byteorder='little', signed=False)
                     self.frame.append(buf)
                     buf = func(buf)
+                    # print(buf)
                     rb.append(buf) 
                     self.cstate = FSM_DATA                    
                     self.i_cnt += 1
             else:
-                self.i_cnt += 1
+                if(self.i_cnt >= ((self.frame[1]&0x0fff)-1)):
+                    self.arr = []
+                    self.frame = []
+                    self.i_cnt = 0
+                    self.cstate = FSM_IDLE
+                else:
+                    self.i_cnt += 1
 
             
 pfsm = pkg_fsm()
@@ -274,7 +275,7 @@ def choose_windows(name='Hanning', N=20): # Rect/Hanning/Hamming
     return window
 
 def my_fft(din):
-    temp = din[:fft_size]*choose_windows(name='Hanning',N=fft_size)
+    temp = din[:fft_size]*choose_windows(name='Rect',N=fft_size)
 #    temp = din[:fft_size]
     fftx = np.fft.rfft(temp)/fft_size
     xfp = np.abs(fftx)*2
@@ -301,7 +302,8 @@ def update(i):
     ax.set_ylim(np.min(temp[:,0]),np.max(temp[:,0]))       
       
     habx_t = my_fft(temp[:,0])
-    habx_t[:250] = 0.000005
+    habx_t[:1500] = 0.000005
+    # habx_t[2500:] = 0.000005
     habx = mav_inst.mav_insert(habx_t)
     linexf.set_ydata(habx)
     af.set_ylim(np.min(habx),np.max(habx))  
