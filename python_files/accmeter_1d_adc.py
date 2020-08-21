@@ -11,6 +11,8 @@ import time
 import struct
 import queue
 import serial
+import ctypes
+
 
 import numpy as np
 from scipy import signal
@@ -25,25 +27,11 @@ FSM_DATA = 2
 
 SYNC_HEAD = b'\x9b\xdf'
 
-# 0 4000Hz
-# 1 2000Hz
-# 2 1000Hz
-# 3 500Hz
-# 4 250Hz
-# 5 125Hz
-# 6 62.5Hz
-# 7 31.25Hz
-# 8 15.625Hz
-# 9 7.813Hz
-# 10 3.906Hz
-
-FILTER_REG = 80
-
-FS = 2000>>(FILTER_REG&0x0f)
+FS = 4096
 TARGET_FREQ = 470
 FREQ_SPAN = 30
 #FS = 4000
-WINDOW_SIZE = 2**16
+WINDOW_SIZE = 2**13
 FFT_MAV_LEN = 32
 #WINDOW_SIZE = 1024
 
@@ -55,7 +43,7 @@ inb_q = queue.Queue(0)
 #gain = 3.9e-6
 
 def calc_ord(reg_val):
-    fs = 4000>>(reg_val&0x0f)
+    fs = reg_val
     lpf = fs/4
     lpf_reg = reg_val>>4
     if(lpf_reg == 0 ):
@@ -113,12 +101,14 @@ class pkg_fsm(object):
                 if(self.i_cnt == 0):
                     self.i_cnt += 1 
                 else:
-                    buf = int.from_bytes(bytes(self.arr[-4:]),byteorder='little', signed=False)
+                    buf = int.from_bytes(bytes(self.arr[-4:]),byteorder='little', signed=True)
                     self.frame.append(buf)
-                    buf = func(buf)
-                    # print(buf)
-                    rb.append(buf) 
-                    self.cstate = FSM_DATA                    
+                    # fbuf = buf*0.000000596/2#gain 1
+                    fbuf = buf*0.000000596/10#gain 2
+                    # fbuf = buf*0.000000596/50#gain 3
+                    # print(fbuf)
+                    rb.append(fbuf) 
+                    self.cstate = FSM_DATA
                     self.i_cnt += 1
             else:
                 if(self.i_cnt >= ((self.frame[1]&0x0fff)-1)):
@@ -275,7 +265,7 @@ def choose_windows(name='Hanning', N=20): # Rect/Hanning/Hamming
     return window
 
 def my_fft(din):
-    temp = din[:fft_size]*choose_windows(name='Rect',N=fft_size)
+    temp = din[:fft_size]*choose_windows(name='Hanning',N=fft_size)
 #    temp = din[:fft_size]
     fftx = np.fft.rfft(temp)/fft_size
     xfp = np.abs(fftx)*2
@@ -302,7 +292,7 @@ def update(i):
     ax.set_ylim(np.min(temp[:,0]),np.max(temp[:,0]))       
       
     habx_t = my_fft(temp[:,0])
-    habx_t[:1700] = 0.000005
+    habx_t[:750] = 0.0000001
     # habx_t[2500:] = 0.000005
     habx = mav_inst.mav_insert(habx_t)
     linexf.set_ydata(habx)
@@ -339,9 +329,9 @@ def initial():
     return linex,
 
 try:    
-    FS,LPF,HPF = calc_ord(FILTER_REG)
+    FS,LPF,HPF = calc_ord(FS)
     print("FS:%.3f,LPF:%.3f,HPF:%.3f\n" % (FS,LPF,HPF))
-    sys_init(mode=1,ip="192.168.1.100",port=9996)
+    sys_init(mode=1,ip="192.168.1.101",port=9996)
 #    sys_init(mode=1,ip="192.168.4.1",port=9996) 
     ani = animation.FuncAnimation(fig=fig,func=update,frames=gen_frames,init_func=initial,interval=100,blit=False)
     plt.show()
