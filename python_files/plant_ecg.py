@@ -1,3 +1,11 @@
+#!/usr/bin/env python3
+# -*- coding: utf-8 -*-
+"""
+Created on Tue Sep 15 16:52:59 2020
+
+@author: aureoleday
+"""
+
 # -*- coding: utf-8 -*-
 """
 Created on Mon Dec  3 15:52:21 2018
@@ -13,6 +21,7 @@ import queue
 import serial
 import ctypes
 
+
 import numpy as np
 from scipy import signal
 from ringbuf import RingBuffer
@@ -26,14 +35,13 @@ FSM_DATA = 2
 
 SYNC_HEAD = b'\x9b\xdf'
 
-FS = 4000
-# FS = 32000
+# FS = 4000
+FS = 4096
 TARGET_FREQ = 470
 FREQ_SPAN = 30
 #FS = 4000
-# WINDOW_SIZE = 2**14     
-WINDOW_SIZE = FS*4
-FFT_MAV_LEN = 4
+WINDOW_SIZE = 2**12
+FFT_MAV_LEN = 32
 #WINDOW_SIZE = 1024
 
 fft_size = WINDOW_SIZE
@@ -96,7 +104,7 @@ class pkg_fsm(object):
                 self.i_cnt += 1
                 self.cstate = FSM_SYNC
         elif self.cstate == FSM_DATA:
-            # off = (self.i_cnt>>2)4096
+            # off = (self.i_cnt>>2)
             # print(bytes(self.frame[0]))
             if(self.i_cnt&0x0003 == 0):
                 if(self.i_cnt == 0):
@@ -106,9 +114,7 @@ class pkg_fsm(object):
                     buf = int.from_bytes(bytes(self.arr[-4:]),byteorder='little', signed=True)
                     self.frame.append(buf)
                     # fbuf = buf*0.00000009933*5        #gain 1
-                    # fbuf = buf*0.00000009933          #gain 2
-                    fbuf = buf*0.000000009933          #gain 2
-                    # fbuf = buf*0.0000039          #gain digital
+                    fbuf = buf*0.00000009933          #gain 2
                     # fbuf = buf*0.00000009933/5        #gain 3
                     # print(fbuf)
                     rb.append(fbuf) 
@@ -239,6 +245,14 @@ class iirpeak_filter:
         dout, self.z = signal.lfilter(self.b, self.a, din, zi=self.z)
         return dout
 
+class iirnotch_filter:
+    def __init__(self,fs,f0,Q):
+        self.b,self.a = signal.iirnotch(f0,Q,fs)
+        self.z = np.zeros(max(len(self.a),len(self.b))-1,dtype=np.float)
+        
+    def filt(self,din):
+        dout, self.z = signal.lfilter(self.b, self.a, din, zi=self.z)
+        return dout
 
 fig = plt.figure()
 ax = plt.subplot2grid((7,1),(0,0),rowspan=2)
@@ -253,7 +267,8 @@ linexf, = af.plot(xh,np.sin(xh),color = 'r',linestyle='-', marker=',')
 linexfs, = afs.plot(xh,np.sin(xh),color = 'b',linestyle='-', marker=',')
 
 #filt_inst = my_filter(3,[0.22,0.25],'bandpass')
-filt_inst = iirpeak_filter(FS,473,40)
+# filt_inst = iirpeak_filter(FS,473,40)
+filt_inst = iirnotch_filter(FS,50,40)
 
 
 def gen_frames():
@@ -291,15 +306,14 @@ def goertzel(din,k,N):
 
 def update(i):
     temp = rb.view
-#    temp[:,0] = filt_inst.filt(temp[:,0])
+    temp[:,0] = filt_inst.filt(temp[:,0])
     linex.set_ydata(temp[:,0])
     ax.set_ylim(np.min(temp[:,0]),np.max(temp[:,0]))       
       
     habx_t = my_fft(temp[:,0])
-    habx_t[:1000] = 0.00000005
+    # habx_t[:400] = 0.00000012
     # habx_t[2500:] = 0.000005
     habx = mav_inst.mav_insert(habx_t)
-    # habx = habx_t
     linexf.set_ydata(habx)
     af.set_ylim(np.min(habx),np.max(habx))  
     
@@ -313,7 +327,7 @@ def update(i):
         linexfs.set_ydata(habx_acc)
         afs.set_ylim(np.min(habx_acc),np.max(habx_acc))    
 
-def initial():  
+def initial():
     linex.set_ydata(np.sin(x))
     linexf.set_ydata(np.zeros(int(WINDOW_SIZE/2 + 1)))
     ax.set_ylim(-3,3)
@@ -337,9 +351,9 @@ try:
     # FS,LPF,HPF = calc_ord(FS)
     # print("FS:%.3f,LPF:%.3f,HPF:%.3f\n" % (FS,LPF,HPF)).
     print("FS:%.3f\n" % (FS))
-    # sys_init(mode=1,ip="192.168.1.101",port=9996)
-    sys_init(mode=1,ip="192.168.3.68",port=9996)
-    # sys_init(mode=1,ip="192.168.43.116",port=9996) 
+    # sys_init(mode=1,ip="192.168.1.105",port=9996)
+    sys_init(mode=1,ip="192.168.3.4",port=9996)
+    # sys_init(mode=1,ip="192.168.4.1",port=9996) 
     ani = animation.FuncAnimation(fig=fig,func=update,frames=gen_frames,init_func=initial,interval=100,blit=False)
     plt.show()
 except KeyboardInterrupt:

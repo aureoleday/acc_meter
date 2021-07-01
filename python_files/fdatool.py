@@ -13,11 +13,11 @@ import numpy as np
 FS = 4e3
 nyq = FS/2
 T = 1/FS
-filt_ord = 32
+filt_ord = 31
 
 FC = 0.06*nyq
 
-b = signal.firwin(filt_ord,cutoff=FC/nyq,window=("kaiser",8))
+b = signal.firwin(filt_ord,cutoff=FC/nyq,window=("kaiser",8),pass_zero='highpass')
 w, h = signal.freqz(b)
 
 fig, ax1 = plt.subplots()

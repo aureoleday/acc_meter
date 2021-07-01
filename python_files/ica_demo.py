@@ -54,41 +54,41 @@ for ii, (model, name) in enumerate(zip(models, names), 1):
 plt.subplots_adjust(0.09, 0.04, 0.94, 0.94, 0.26, 0.46)
 plt.show()
 
-FS=4000
-WINDOW_SIZE = 2**11
+# FS=4000
+# WINDOW_SIZE = 2**11
 
-fft_size = WINDOW_SIZE
+# fft_size = WINDOW_SIZE
 
-def choose_windows(name='Hanning', N=20): # Rect/Hanning/Hamming 
-    if name == 'Hamming':
-        window = np.array([0.54 - 0.46 * np.cos(2 * np.pi * n / (N - 1)) for n in range(N)]) 
-    elif name == 'Hanning':
-        window = np.array([0.5 - 0.5 * np.cos(2 * np.pi * n / (N - 1)) for n in range(N)]) 
-    elif name == 'Rect':
-        window = np.ones(N) 
-    return window
+# def choose_windows(name='Hanning', N=20): # Rect/Hanning/Hamming 
+#     if name == 'Hamming':
+#         window = np.array([0.54 - 0.46 * np.cos(2 * np.pi * n / (N - 1)) for n in range(N)]) 
+#     elif name == 'Hanning':
+#         window = np.array([0.5 - 0.5 * np.cos(2 * np.pi * n / (N - 1)) for n in range(N)]) 
+#     elif name == 'Rect':
+#         window = np.ones(N) 
+#     return window
 
-def my_fft(din):
-    temp = din[:fft_size]*choose_windows(name='Rect',N=fft_size)
-    fftx = np.fft.rfft(temp)*2/fft_size
-    ampl = np.abs(fftx)
-    ph = np.angle(fftx)
-    return ampl,ph
+# def my_fft(din):
+#     temp = din[:fft_size]*choose_windows(name='Rect',N=fft_size)
+#     fftx = np.fft.rfft(temp)*2/fft_size
+#     ampl = np.abs(fftx)
+#     ph = np.angle(fftx)
+#     return ampl,ph
 
-plt.figure()
-#xh = np.arange(0,WINDOW_SIZE/2+1)*FS/(WINDOW_SIZE)
-habx_t,ph = my_fft(X.T[0])
-#x = np.arange(0,WINDOW_SIZE)/FS
-plt.plot(habx_t)
+# plt.figure()
+# #xh = np.arange(0,WINDOW_SIZE/2+1)*FS/(WINDOW_SIZE)
+# habx_t,ph = my_fft(X.T[0])
+# #x = np.arange(0,WINDOW_SIZE)/FS
+# plt.plot(habx_t)
 
-plt.figure()
-#xh = np.arange(0,WINDOW_SIZE/2+1)*FS/(WINDOW_SIZE)
-habx_t,ph = my_fft(S_.T[0])
-#x = np.arange(0,WINDOW_SIZE)/FS
-plt.plot(habx_t)
+# plt.figure()
+# #xh = np.arange(0,WINDOW_SIZE/2+1)*FS/(WINDOW_SIZE)
+# habx_t,ph = my_fft(S_.T[0])
+# #x = np.arange(0,WINDOW_SIZE)/FS
+# plt.plot(habx_t)
 
-plt.figure()
-#xh = np.arange(0,WINDOW_SIZE/2+1)*FS/(WINDOW_SIZE)
-habx_t,ph = my_fft(S_.T[2])
-#x = np.arange(0,WINDOW_SIZE)/FS
-plt.plot(habx_t)
+# plt.figure()
+# #xh = np.arange(0,WINDOW_SIZE/2+1)*FS/(WINDOW_SIZE)
+# habx_t,ph = my_fft(S_.T[2])
+# #x = np.arange(0,WINDOW_SIZE)/FS
+# plt.plot(habx_t)
