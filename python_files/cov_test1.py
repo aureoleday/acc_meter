@@ -21,7 +21,7 @@ y = np.random.normal(0, 1, 500)
 X = np.vstack((x, y)).T
 
 X = X - np.mean(X,0)
-sx,sy = 0.7, 3.4
+sx,sy = 0.7, 2.4
 scale = np.array([[sx,0],[0,sy]])
 theta = 2*np.pi*0.3
 R = np.array([[np.cos(theta),-np.sin(theta)],[np.sin(theta),np.cos(theta)]])

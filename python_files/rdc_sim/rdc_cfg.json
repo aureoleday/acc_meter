@@ -1,0 +1,67 @@
+{
+	"com":{
+			"//": "sample frequency",
+			"fs": 			160000,
+			"//": "carrier frequency",
+			"fc": 			20000,
+			"//": "simulation time rounds",
+			"N": 			4000,
+			"//": "signal to noise ratio",
+			"SNR": 			61.96,
+			"//": "flag for float(R)/fix-point(Q) mode",
+			"usr_opf": 		"R"
+	},
+	"src":{
+			"//": "max resolver speed when accelleration",
+			"fmax":			4000,
+			"//": "initial resolver speed",
+			"fm":			50,
+			"//": "resolver spin direction",
+			"r_dir":		0,
+			"//": "resolver accelleration",
+			"a":			0,
+			"//": "frequency deviation(~5%)",
+			"fd_err":		0.00,
+			"//": "dc offset(FS%)",
+			"dc_err":		0.00,
+			"//": "gain error(FS%)",
+			"ac_err":		0.00,
+			"//": "carrier differential phase shift(unified rad)",
+			"ps_err":		0.00,
+			"//": "shaft phase error(unified rad)",
+			"sp_err":		0.00,
+			"//": "carrier differential phase shift compensation(unified rad)",
+			"dpsc":			1.00,
+			"//": "step response start time",
+			"step_thresh":	2000,
+			"//": "step response value(degree)",
+			"step_value":	0.00,
+			"//": "initial carrier phase(unified rad)",
+			"phi":			0.00,
+			"//": "initial resolver phase(unified rad)",
+			"theta":		0.00
+	},
+	"pll":{
+			"//": "loop gain",
+			"Kd": 			1,
+			"//": "equivalent noise bandwidth",
+			"Bn": 			0.02,
+			"//": "damping ratio",
+			"Zeta":			0.707
+	},
+	"costas":{
+			"//": "loop gain",
+			"Kd": 			0.5,
+			"//": "equivalent noise bandwidth",
+			"Bn": 			0.02,
+			"//": "damping ratio",
+			"Zeta":			0.707
+	},
+	"iir":{
+			"//": "flag of hpf bypass option",
+			"iir_bypass":	1,
+			"//": "iir b1 parameter",
+			"b1_iir": 		0.998
+	}
+}
+

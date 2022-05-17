@@ -23,6 +23,20 @@ def sig_gen(carrier_freq,spr,rep,off):
     print(sig_bits)
     return np.kron(sig_bits,osc_cos)
 
+def matched_filter_re(din,pattern,carrier_freq,spr,rep):
+    osc_cos = np.cos(2*np.pi*carrier_freq*np.arange(spr/carrier_freq)/spr)
+    
+    lc = np.kron(np.kron(pattern,np.ones(rep)),osc_cos)
+    print(lc.size)
+    a = np.array(0)
+    for x in range(din.size):
+        if(x<lc.size):
+            temp = reduce(lambda x,y:x+y,np.append(din[:x],np.zeros(lc.size-x))*lc)
+        else:
+            temp = reduce(lambda x,y:x+y,din[(x-lc.size):x]*lc)
+        a = np.append(a,temp)
+    return a
+
 
 def matched_filter(din,carrier_freq,spr,rep):
     osc_cos = np.cos(2*np.pi*carrier_freq*np.arange(spr/carrier_freq)/spr)
@@ -40,4 +54,11 @@ def matched_filter(din,carrier_freq,spr,rep):
 
 data = sig_gen(cf,spr,rep,off)
 out = matched_filter(data,cf,spr,rep)
-plt.plot(out)
+out_reg = matched_filter_re(data,[1,1,-1],cf,spr,rep)
+
+plt.close('all')
+plt.figure()
+ax = plt.subplot(211)
+ax.plot(data)
+ax = plt.subplot(212)
+plt.plot(out_reg)

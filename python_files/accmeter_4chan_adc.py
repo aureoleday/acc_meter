@@ -1,3 +1,11 @@
+#!/usr/bin/env python3
+# -*- coding: utf-8 -*-
+"""
+Created on Wed Jul 14 14:31:53 2021
+
+@author: aureoleday
+"""
+
 # -*- coding: utf-8 -*-
 """
 Created on Mon Dec  3 15:52:21 2018
@@ -26,6 +34,7 @@ FSM_DATA = 2
 
 SYNC_HEAD = b'\x9b\xdf'
 
+DIM = 4
 FS = 4000
 # FS = 32000
 TARGET_FREQ = 470
@@ -38,7 +47,7 @@ FFT_MAV_LEN = 4
 
 fft_size = WINDOW_SIZE
 
-rb = RingBuffer(WINDOW_SIZE,1)
+rb = RingBuffer(WINDOW_SIZE,DIM)
 in_buf = []
 inb_q = queue.Queue(0)
 #gain = 3.9e-6
@@ -70,6 +79,8 @@ class pkg_fsm(object):
         self.i_cnt = 0
         self.arr = []
         self.frame = []
+        self.dset = []
+        self.dcnt = 0
     
     def resolve(self,din):
         self.arr.append(din)
@@ -111,9 +122,19 @@ class pkg_fsm(object):
                     # fbuf = buf*0.0000039          #gain digital
                     # fbuf = buf*0.00000009933/5        #gain 3
                     # print(fbuf)
-                    rb.append(fbuf) 
+                    # rb.append(fbuf) 
+                    self.dset.append(fbuf)
+
                     self.cstate = FSM_DATA
                     self.i_cnt += 1
+                    if(len(self.dset)%DIM == 0):
+                        # if(self.dcnt >= 4000):
+                        #     print(self.dset)
+                        #     self.dcnt = 0
+                        # else:
+                        #     self.dcnt += 1
+                        rb.append(self.dset)                        
+                        self.dset = []
             else:
                 if(self.i_cnt >= ((self.frame[1]&0x0fff)-1)):
                     self.arr = []
@@ -241,14 +262,20 @@ class iirpeak_filter:
 
 
 fig = plt.figure()
-ax = plt.subplot2grid((7,1),(0,0),rowspan=2)
-af = plt.subplot2grid((7,1),(2,0),rowspan=4)
-afs = plt.subplot2grid((7,1),(6,0),rowspan=2)
+ax = plt.subplot2grid((8,1),(0,0),rowspan=1)
+ax1 = plt.subplot2grid((8,1),(1,0),rowspan=1)
+ax2 = plt.subplot2grid((8,1),(2,0),rowspan=1)
+ax3 = plt.subplot2grid((8,1),(3,0),rowspan=1)
+af = plt.subplot2grid((8,1),(4,0),rowspan=3)
+afs = plt.subplot2grid((8,1),(7,0),rowspan=1)
  
 x = np.arange(0,WINDOW_SIZE)/FS
 xh = np.arange(0,WINDOW_SIZE/2+1)*FS/(WINDOW_SIZE)
 
 linex, = ax.plot(x,np.sin(x),'g')
+linex1, = ax1.plot(x,np.sin(x),'g')
+linex2, = ax2.plot(x,np.sin(x),'g')
+linex3, = ax3.plot(x,np.sin(x),'g')
 linexf, = af.plot(xh,np.sin(xh),color = 'r',linestyle='-', marker=',')
 linexfs, = afs.plot(xh,np.sin(xh),color = 'b',linestyle='-', marker=',')
 
@@ -295,6 +322,18 @@ def update(i):
     linex.set_ydata(temp[:,0])
     ax.set_ylim(np.min(temp[:,0]),np.max(temp[:,0]))       
       
+    if DIM>1:
+        linex1.set_ydata(temp[:,1])
+        ax1.set_ylim(np.min(temp[:,1]),np.max(temp[:,1]))   
+
+    if DIM>2:
+        linex2.set_ydata(temp[:,2])
+        ax2.set_ylim(np.min(temp[:,2]),np.max(temp[:,2]))   
+
+    if DIM>3:
+        linex3.set_ydata(temp[:,3])
+        ax3.set_ylim(np.min(temp[:,3]),np.max(temp[:,3]))   
+    
     habx_t = my_fft(temp[:,0])
     habx_t[:1000] = 0.00000005
     # habx_t[2500:] = 0.000005
@@ -315,12 +354,30 @@ def update(i):
 
 def initial():  
     linex.set_ydata(np.sin(x))
+    linex1.set_ydata(np.sin(x))
+    linex2.set_ydata(np.sin(x))
+    linex3.set_ydata(np.sin(x))
     linexf.set_ydata(np.zeros(int(WINDOW_SIZE/2 + 1)))
+    
     ax.set_ylim(-3,3)
     ax.set_xlabel("time")
-    ax.set_ylabel("x(g)")    
-    
+    ax.set_ylabel("ch_0")    
     ax.grid(True, linestyle='-.')
+    
+    ax1.set_ylim(-3,3)
+    ax1.set_xlabel("time")
+    ax1.set_ylabel("ch_1")    
+    ax1.grid(True, linestyle='-.')
+
+    ax2.set_ylim(-3,3)
+    ax2.set_xlabel("time")
+    ax2.set_ylabel("ch_2")    
+    ax2.grid(True, linestyle='-.')
+
+    ax3.set_ylim(-3,3)
+    ax3.set_xlabel("time")
+    ax3.set_ylabel("ch_3")    
+    ax3.grid(True, linestyle='-.')
 
     af.set_ylim(-1,1)
     af.grid(True, linestyle='-.')
@@ -338,7 +395,7 @@ try:
     # print("FS:%.3f,LPF:%.3f,HPF:%.3f\n" % (FS,LPF,HPF)).
     print("FS:%.3f\n" % (FS))
     # sys_init(mode=1,ip="192.168.1.101",port=9996)
-    sys_init(mode=1,ip="192.168.4.1",port=9996)
+    sys_init(mode=1,ip="192.168.3.97",port=9996)
     # sys_init(mode=1,ip="192.168.43.116",port=9996) 
     ani = animation.FuncAnimation(fig=fig,func=update,frames=gen_frames,init_func=initial,interval=100,blit=False)
     plt.show()

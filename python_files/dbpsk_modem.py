@@ -34,11 +34,12 @@ def AWGN(sin,snr):
 f0 = 200
 fs = 3200
 N = 20
+SNR=20
 
 osc = np.cos(2*np.pi*f0*np.arange(fs/f0)/fs)
 
 ms = np.kron((np.random.randint(0,2,N)-0.5)*2,osc)
-msn = AWGN(ms,3)
+msn = AWGN(ms,SNR)
 
 dout = demod(msn,f0,fs)
 

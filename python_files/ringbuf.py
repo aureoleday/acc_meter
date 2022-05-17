@@ -55,8 +55,10 @@ if __name__ == '__main__':
     for i in range(4):
         rb.append([1,2,3])
         print(rb.view)
+        print("\n")
     for i in range(20):
         rb.append((np.arange(6)*i).reshape(2,3))
         print(rb.view)  #test overflow
+        print("\n")
 
 

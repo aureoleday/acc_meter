@@ -1,0 +1,988 @@
+!_TAG_FILE_FORMAT	2	/extended format; --format=1 will not append ;" to lines/
+!_TAG_FILE_SORTED	1	/0=unsorted, 1=sorted, 2=foldcase/
+!_TAG_PROGRAM_AUTHOR	Darren Hiebert	/dhiebert@users.sourceforge.net/
+!_TAG_PROGRAM_NAME	Exuberant Ctags	//
+!_TAG_PROGRAM_URL	http://ctags.sourceforge.net	/official site/
+!_TAG_PROGRAM_VERSION	5.9~svn20110310	//
+A	ica_2comps.py	/^A = np.array([[0.01, 80], [0.1, 100]]) # 混合矩阵$/;"	v
+A	ica_demo.py	/^A = np.array([[1, 1, 1], [0.5, 2, 1.0], [1.5, 1.0, 2.0]]) # 混合矩阵$/;"	v
+AGWN	costas_loop.py	/^def AGWN(Ps,snr):$/;"	f
+AGWN	rdc_sim.py	/^def AGWN(Ps,snr):$/;"	f
+AWGN	dbpsk_modem.py	/^def AWGN(sin,snr):$/;"	f
+AWGN	dsb_sc_modem.py	/^def AWGN(sin,snr):$/;"	f
+AWGN	iq_test.py	/^def AWGN(sin,snr):$/;"	f
+A_	ica_2comps.py	/^A_ = ica.mixing_ # 获得估计混合后的矩阵$/;"	v
+A_	ica_demo.py	/^A_ = ica.mixing_ # 获得估计混合后的矩阵$/;"	v
+Acount	test.py	/^class Acount:$/;"	c
+B2IQ	bpsk_modem.py	/^def B2IQ(din, mode = 'bpsk', dif = 'off', repeat = 1):        $/;"	f
+B2IQ	iq_test.py	/^def B2IQ(din, mode = 'bpsk', dif = 'off', repeat = 1):        $/;"	f
+C	my_cov.py	/^C = np.cov(Y)$/;"	v
+CLTF	transfer_func.py	/^CLTF = sy.cancel(OLTF\/sy.cancel(1+OLTF))$/;"	v
+COMB	costas_loop.py	/^class COMB(object):$/;"	c
+COMB	rdc_sim.py	/^class COMB(object):$/;"	c
+COSTAS	costas_loop.py	/^class COSTAS(object):$/;"	c
+DIM	accmeter_4chan_adc.py	/^DIM = 4$/;"	v
+FC	fdatool.py	/^FC = 0.06*nyq$/;"	v
+FFT_MAV_LEN	accmeter_1d_adc.py	/^FFT_MAV_LEN = 4$/;"	v
+FFT_MAV_LEN	accmeter_1d_gui.py	/^FFT_MAV_LEN = 32$/;"	v
+FFT_MAV_LEN	accmeter_1d_new_gui.py	/^FFT_MAV_LEN = 32$/;"	v
+FFT_MAV_LEN	accmeter_4chan_adc.py	/^FFT_MAV_LEN = 4$/;"	v
+FFT_MAV_LEN	plant_ecg.py	/^FFT_MAV_LEN = 32$/;"	v
+FILTER_REG	accmeter_1d_gui.py	/^FILTER_REG = 80$/;"	v
+FILTER_REG	accmeter_1d_new_gui.py	/^FILTER_REG = 80$/;"	v
+FREQ	auto_corr.py	/^FREQ = 200$/;"	v
+FREQ1	auto_corr.py	/^FREQ1 = 400$/;"	v
+FREQ_SPAN	accmeter_1d_adc.py	/^FREQ_SPAN = 30$/;"	v
+FREQ_SPAN	accmeter_1d_gui.py	/^FREQ_SPAN = 30$/;"	v
+FREQ_SPAN	accmeter_1d_new_gui.py	/^FREQ_SPAN = 30$/;"	v
+FREQ_SPAN	accmeter_4chan_adc.py	/^FREQ_SPAN = 30$/;"	v
+FREQ_SPAN	plant_ecg.py	/^FREQ_SPAN = 30$/;"	v
+FS	accmeter_1d_adc.py	/^FS = 4000$/;"	v
+FS	accmeter_1d_gui.py	/^FS = 4000>>(FILTER_REG&0x0f)$/;"	v
+FS	accmeter_1d_new_gui.py	/^FS = 2000>>(FILTER_REG&0x0f)$/;"	v
+FS	accmeter_4chan_adc.py	/^FS = 4000$/;"	v
+FS	accmeter_gui.py	/^FS = 1000$/;"	v
+FS	audio_sim.py	/^FS = 4800$/;"	v
+FS	dual_tone.py	/^FS=4000$/;"	v
+FS	fdatool.py	/^FS = 4e3$/;"	v
+FS	fft_interpolation.py	/^FS = 2**12$/;"	v
+FS	ica_2comps.py	/^FS=4000$/;"	v
+FS	plant_ecg.py	/^FS = 4096$/;"	v
+FS	raw_fft.py	/^FS=4000$/;"	v
+FSM_DATA	accmeter_1d_adc.py	/^FSM_DATA = 2$/;"	v
+FSM_DATA	accmeter_1d_gui.py	/^FSM_DATA = 2$/;"	v
+FSM_DATA	accmeter_1d_new_gui.py	/^FSM_DATA = 2$/;"	v
+FSM_DATA	accmeter_4chan_adc.py	/^FSM_DATA = 2$/;"	v
+FSM_DATA	plant_ecg.py	/^FSM_DATA = 2$/;"	v
+FSM_IDLE	accmeter_1d_adc.py	/^FSM_IDLE = 0$/;"	v
+FSM_IDLE	accmeter_1d_gui.py	/^FSM_IDLE = 0$/;"	v
+FSM_IDLE	accmeter_1d_new_gui.py	/^FSM_IDLE = 0$/;"	v
+FSM_IDLE	accmeter_4chan_adc.py	/^FSM_IDLE = 0$/;"	v
+FSM_IDLE	plant_ecg.py	/^FSM_IDLE = 0$/;"	v
+FSM_SYNC	accmeter_1d_adc.py	/^FSM_SYNC = 1$/;"	v
+FSM_SYNC	accmeter_1d_gui.py	/^FSM_SYNC = 1$/;"	v
+FSM_SYNC	accmeter_1d_new_gui.py	/^FSM_SYNC = 1$/;"	v
+FSM_SYNC	accmeter_4chan_adc.py	/^FSM_SYNC = 1$/;"	v
+FSM_SYNC	plant_ecg.py	/^FSM_SYNC = 1$/;"	v
+F_0	duffing.py	/^F_0 = 2.5$/;"	v
+G	tf.py	/^G = ((kp+ki)*z-kp)\/(z**2+(kp+ki-2)*z+1-kp)$/;"	v
+G	transfer_func.py	/^G = (kp+ki-kp\/z)\/(1-1\/z)$/;"	v
+GoldSequence	gold.py	/^class GoldSequence:$/;"	c
+H	ica_2comps.py	/^H = pca.fit_transform(X) # 基于PCA的成分正交重构信号源$/;"	v
+H	ica_demo.py	/^H = pca.fit_transform(X) # 基于PCA的成分正交重构信号源$/;"	v
+H	transfer_func.py	/^H = 1\/(1-1\/z)$/;"	v
+HOST	mqtt_client_usr.py	/^HOST = "127.0.0.1"$/;"	v
+K_0	general_dpll.py	/^K_0 = 1$/;"	v
+K_i	general_dpll.py	/^K_i = 0.0178$/;"	v
+K_p	general_dpll.py	/^K_p = 0.2667$/;"	v
+L	lfsr_test.py	/^L = LFSR(fpoly, state, 'true')$/;"	v
+LFSR	gold.py	/^class LFSR:$/;"	c
+LoopFilter	costas_loop.py	/^class LoopFilter(object):$/;"	c
+LoopFilter	rdc_sim.py	/^class LoopFilter(object):$/;"	c
+LoopFilter	transfer_func.py	/^class LoopFilter(object):$/;"	c
+M	general_dpll.py	/^M = 100$/;"	v
+N	costas_loop.py	/^N = 400$/;"	v
+N	cov_test.py	/^N = 500$/;"	v
+N	dbpsk_modem.py	/^N = 20$/;"	v
+N	fft_interpolation.py	/^N = 1$/;"	v
+N	general_dpll.py	/^N = 15$/;"	v
+N	goertzel.py	/^N = 4000$/;"	v
+N	rdc_sim.py	/^N = 2000$/;"	v
+OLTF	transfer_func.py	/^OLTF = sy.cancel(G*H*(z**(-1)))$/;"	v
+PLL	costas_loop.py	/^class PLL(object):$/;"	c
+PLL	rdc_sim.py	/^class PLL(object):$/;"	c
+PN_CODE	IQ_mod.py	/^PN_CODE = np.array([1, 0, 0, 0, 0, 1, 1, 0, 0, 1, 0, 0, 1, 1, 1, 1, 1, 0, 1, 1, 1, 0, 0, 0, 1, 0, 1, 0, 1, 1, 0])$/;"	v
+PN_CODE	my_dsss.py	/^PN_CODE = (PN_CODE-0.5)*2$/;"	v
+PN_CODE	my_dsss.py	/^PN_CODE = np.array([1, 0, 0, 0, 0, 0, 0, 1, 1, 1, 1, 1, 1, 1, 0, 1, 0, 1, 0, 1, 0, 0, 1, 1, 0, 0, 1, 1, 1, 0, 1, 1, 1, 0, 1, 0, 0, 1, 0, 1, 1, 0, 0, 0, 1, 1, 0, 1, 1, 1, 1, 0, 1, 1, 0, 1, 0, 1, 1, 0, 1, 1, 0, 0, 1, 0, 0, 1, 0, 0, 0, 1, 1, 1, 0, 0, 0, 0, 1, 0, 1, 1, 1, 1, 1, 0, 0, 1, 0, 1, 0, 1, 1, 1, 0, 0, 1, 1, 0, 1, 0, 0, 0, 1, 0, 0, 1, 1, 1, 1, 0, 0, 0, 1, 0, 1, 0, 0, 0, 0, 1, 1, 0, 0, 0, 0, 0])$/;"	v
+PORT	mqtt_client_usr.py	/^PORT = 1883$/;"	v
+P_CNT	auto_corr.py	/^P_CNT = 10$/;"	v
+PhaseDetector	rdc_sim.py	/^class PhaseDetector(object):$/;"	c
+R	cov_test.py	/^R = np.array([[np.cos(theta),-np.sin(theta)],[np.sin(theta),np.cos(theta)]]).T$/;"	v
+R	cov_test1.py	/^R = np.array([[np.cos(theta),-np.sin(theta)],[np.sin(theta),np.cos(theta)]])$/;"	v
+R	my_cov.py	/^R = np.array([[np.cos(theta),-np.sin(theta)],[np.sin(theta),np.cos(theta)]])$/;"	v
+RingBuffer	ringbuf.py	/^class RingBuffer(object):$/;"	c
+S	cov_test.py	/^S = np.array([[k1,0],[0,k2]]).T$/;"	v
+S	ica_2comps.py	/^S = np.c_[s1, s2]$/;"	v
+S	ica_demo.py	/^S = np.c_[s1, s2, s3]$/;"	v
+S	my_cov.py	/^S = np.array([[sx,0],[0,sy]])$/;"	v
+SAMPLE_FREQ	IQ_mod.py	/^SAMPLE_FREQ = 4000$/;"	v
+SAMPLE_FREQ	iq_test.py	/^SAMPLE_FREQ = 800$/;"	v
+SAMPLE_RATE	auto_corr.py	/^SAMPLE_RATE = 4000$/;"	v
+SIG_FREQ	IQ_mod.py	/^SIG_FREQ = 500$/;"	v
+SIG_FREQ	iq_test.py	/^SIG_FREQ = 100$/;"	v
+SNR	costas_loop.py	/^SNR = 60$/;"	v
+SNR	dbpsk_modem.py	/^SNR=20$/;"	v
+SNR	dsb_sc_modem.py	/^SNR=50$/;"	v
+SNR	rdc_sim.py	/^SNR = 66$/;"	v
+SPS	my_dsss.py	/^SPS = 8$/;"	v
+SYNC_HEAD	accmeter_1d_adc.py	/^SYNC_HEAD = b'\\x9b\\xdf'$/;"	v
+SYNC_HEAD	accmeter_1d_gui.py	/^SYNC_HEAD = b'\\xdf\\x1b\\xdf\\x9b'$/;"	v
+SYNC_HEAD	accmeter_1d_new_gui.py	/^SYNC_HEAD = b'\\x9b\\xdf'$/;"	v
+SYNC_HEAD	accmeter_4chan_adc.py	/^SYNC_HEAD = b'\\x9b\\xdf'$/;"	v
+SYNC_HEAD	accmeter_gui.py	/^SYNC_HEAD = b'\\xdf\\x1b\\xdf\\x9b'$/;"	v
+SYNC_HEAD	plant_ecg.py	/^SYNC_HEAD = b'\\x9b\\xdf'$/;"	v
+S_	ica_2comps.py	/^S_ = ica.fit_transform(X) # 重构信号$/;"	v
+S_	ica_demo.py	/^S_ = ica.fit_transform(X) # 重构信号$/;"	v
+T	duffing.py	/^T = 30000$/;"	v
+T	fdatool.py	/^T = 1\/FS$/;"	v
+T	fft_interpolation.py	/^T = 1$/;"	v
+T	my_cov.py	/^T = np.dot(R,S)$/;"	v
+TARGET_FREQ	accmeter_1d_adc.py	/^TARGET_FREQ = 470$/;"	v
+TARGET_FREQ	accmeter_1d_gui.py	/^TARGET_FREQ = 470$/;"	v
+TARGET_FREQ	accmeter_1d_new_gui.py	/^TARGET_FREQ = 470$/;"	v
+TARGET_FREQ	accmeter_4chan_adc.py	/^TARGET_FREQ = 470$/;"	v
+TARGET_FREQ	plant_ecg.py	/^TARGET_FREQ = 470$/;"	v
+Tr	my_cov.py	/^Tr = np.linalg.inv(np.dot(Rr,Sr))$/;"	v
+Ts	audio_sim.py	/^Ts = 100$/;"	v
+WINDOW_SIZE	accmeter_1d_adc.py	/^WINDOW_SIZE = FS*4$/;"	v
+WINDOW_SIZE	accmeter_1d_gui.py	/^WINDOW_SIZE = 2**12$/;"	v
+WINDOW_SIZE	accmeter_1d_new_gui.py	/^WINDOW_SIZE = 2**16$/;"	v
+WINDOW_SIZE	accmeter_4chan_adc.py	/^WINDOW_SIZE = FS*4$/;"	v
+WINDOW_SIZE	accmeter_gui.py	/^WINDOW_SIZE = 512$/;"	v
+WINDOW_SIZE	audio_sim.py	/^WINDOW_SIZE = 2**14$/;"	v
+WINDOW_SIZE	dual_tone.py	/^WINDOW_SIZE = 2**12$/;"	v
+WINDOW_SIZE	fft_interpolation.py	/^WINDOW_SIZE = N*FS$/;"	v
+WINDOW_SIZE	ica_2comps.py	/^WINDOW_SIZE = 2**11$/;"	v
+WINDOW_SIZE	plant_ecg.py	/^WINDOW_SIZE = 2**12$/;"	v
+WINDOW_SIZE	raw_fft.py	/^WINDOW_SIZE = 2**16$/;"	v
+X	cov_test1.py	/^X = X - np.mean(X,0)$/;"	v
+X	cov_test1.py	/^X = np.vstack((x, y)).T$/;"	v
+X	ica_2comps.py	/^X = np.dot(S, A.T) # 生成观测信号源$/;"	v
+X	ica_demo.py	/^X = np.dot(S, A.T) # 生成观测信号源$/;"	v
+X	my_cov.py	/^X = np.c_[[x,y]]$/;"	v
+Y	cov_test1.py	/^Y = X.dot(scale.dot(R))$/;"	v
+Y	my_cov.py	/^Y = np.dot(T,X)$/;"	v
+Z	my_cov.py	/^Z = np.dot(Tr,Y)$/;"	v
+Z_1	cmda.py	/^Z_1 = encode(code_s1,-1)$/;"	v
+Z_2	cmda.py	/^Z_2 = encode(code_s2,-1)$/;"	v
+Z_star	cmda.py	/^Z_star = Z_sum(Z_1,Z_2)$/;"	v
+Z_sum	cmda.py	/^def Z_sum(s1,s2):$/;"	f
+__author__	ringbuf.py	/^__author__ = 'aureole'$/;"	v
+__init__	IQ_mod.py	/^    def __init__(self,N,filt_zone=[0.2],filt_type='lowpass'):$/;"	m	class:my_filter
+__init__	IQ_mod.py	/^    def __init__(self,sig_freq=1000,sample_freq=32000,rep_N=8,beta=0.3,sps=4,span=1):$/;"	m	class:iq_mod
+__init__	accmeter_1d_adc.py	/^    def __init__(self):$/;"	m	class:pkg_fsm
+__init__	accmeter_1d_adc.py	/^    def __init__(self,N,filt_zone=[0.2],filt_type='lowpass'):$/;"	m	class:my_filter
+__init__	accmeter_1d_adc.py	/^    def __init__(self,fs,f0,Q):$/;"	m	class:iirpeak_filter
+__init__	accmeter_1d_adc.py	/^    def __init__(self,row,col):$/;"	m	class:my_mav
+__init__	accmeter_1d_gui.py	/^    def __init__(self):$/;"	m	class:pkg_fsm
+__init__	accmeter_1d_gui.py	/^    def __init__(self,N,filt_zone=[0.2],filt_type='lowpass'):$/;"	m	class:my_filter
+__init__	accmeter_1d_gui.py	/^    def __init__(self,fs,f0,Q):$/;"	m	class:iirpeak_filter
+__init__	accmeter_1d_gui.py	/^    def __init__(self,row,col):$/;"	m	class:my_mav
+__init__	accmeter_1d_new_gui.py	/^    def __init__(self):$/;"	m	class:pkg_fsm
+__init__	accmeter_1d_new_gui.py	/^    def __init__(self,N,filt_zone=[0.2],filt_type='lowpass'):$/;"	m	class:my_filter
+__init__	accmeter_1d_new_gui.py	/^    def __init__(self,fs,f0,Q):$/;"	m	class:iirpeak_filter
+__init__	accmeter_1d_new_gui.py	/^    def __init__(self,row,col):$/;"	m	class:my_mav
+__init__	accmeter_4chan_adc.py	/^    def __init__(self):$/;"	m	class:pkg_fsm
+__init__	accmeter_4chan_adc.py	/^    def __init__(self,N,filt_zone=[0.2],filt_type='lowpass'):$/;"	m	class:my_filter
+__init__	accmeter_4chan_adc.py	/^    def __init__(self,fs,f0,Q):$/;"	m	class:iirpeak_filter
+__init__	accmeter_4chan_adc.py	/^    def __init__(self,row,col):$/;"	m	class:my_mav
+__init__	costas_loop.py	/^    def __init__(self, gain, Bn, zeta):$/;"	m	class:LoopFilter
+__init__	costas_loop.py	/^    def __init__(self,fs,fc, lf_gain, lf_bandwidth, lf_damping):$/;"	m	class:COSTAS
+__init__	costas_loop.py	/^    def __init__(self,fs,fc, lf_gain, lf_bandwidth, lf_damping):$/;"	m	class:PLL
+__init__	costas_loop.py	/^    def __init__(self,fs,fc,fm, lf_gain, lf_bandwidth, lf_damping):$/;"	m	class:COMB
+__init__	gold.py	/^    def __init__(self, first_polynomial, first_initial_conditions,$/;"	m	class:GoldSequence
+__init__	gold.py	/^    def __init__(self, taps, init_register, output=None, samples_per_frame=None, matlab=False):$/;"	m	class:LFSR
+__init__	my_dll.py	/^    def __init__(self,sps=4):$/;"	m	class:dll
+__init__	plant_ecg.py	/^    def __init__(self):$/;"	m	class:pkg_fsm
+__init__	plant_ecg.py	/^    def __init__(self,N,filt_zone=[0.2],filt_type='lowpass'):$/;"	m	class:my_filter
+__init__	plant_ecg.py	/^    def __init__(self,fs,f0,Q):$/;"	m	class:iirnotch_filter
+__init__	plant_ecg.py	/^    def __init__(self,fs,f0,Q):$/;"	m	class:iirpeak_filter
+__init__	plant_ecg.py	/^    def __init__(self,row,col):$/;"	m	class:my_mav
+__init__	randtree.py	/^    def __init__(self,level,nodes,max_leaf):$/;"	m	class:rand_tree
+__init__	rcos.py	/^    def __init__(self,beta, sps, span=None):$/;"	m	class:my_rcc
+__init__	rdc_sim.py	/^    def __init__(self, gain, Bn, zeta):$/;"	m	class:LoopFilter
+__init__	rdc_sim.py	/^    def __init__(self,fs,fc, lf_gain, lf_bandwidth, lf_damping,lf_delay = 1,pd_type='pll'):$/;"	m	class:PLL
+__init__	rdc_sim.py	/^    def __init__(self,fs,fc,fm, lf_gain, lf_bandwidth, lf_damping, lf_delay=1):$/;"	m	class:COMB
+__init__	rdc_sim.py	/^    def __init__(self,mode = 'pll'):$/;"	m	class:PhaseDetector
+__init__	ringbuf.py	/^    def __init__(self, size, dim=1, padding=None):$/;"	m	class:RingBuffer
+__init__	test.py	/^    def __init__(self,cdict):$/;"	m	class:Acount
+__init__	test111.py	/^    def __init__(self,row,col):$/;"	m	class:my_mav
+__init__	transfer_func.py	/^    def __init__(self, gain, Bn, zeta):$/;"	m	class:LoopFilter
+_quit	matplotlib_tkinter.py	/^def _quit():$/;"	f
+a	duffing.py	/^a = 0.5$/;"	v
+a	matplotlib_tkinter.py	/^a = f.add_subplot(111)$/;"	v
+a	xor_calc.py	/^a = [0x10,0x01,0x01]$/;"	v
+a1	adc_raw_plt.py	/^a1 = np.loadtxt('\/home\/aureoleday\/share\/dat.txt',int)$/;"	v
+acc_insert	accmeter_1d_adc.py	/^    def acc_insert(self,din):$/;"	m	class:my_mav
+acc_insert	accmeter_1d_gui.py	/^    def acc_insert(self,din):$/;"	m	class:my_mav
+acc_insert	accmeter_1d_new_gui.py	/^    def acc_insert(self,din):$/;"	m	class:my_mav
+acc_insert	accmeter_4chan_adc.py	/^    def acc_insert(self,din):$/;"	m	class:my_mav
+acc_insert	plant_ecg.py	/^    def acc_insert(self,din):$/;"	m	class:my_mav
+advance_filter	costas_loop.py	/^    def advance_filter(self, phase_difference):$/;"	m	class:LoopFilter
+advance_filter	rdc_sim.py	/^    def advance_filter(self, phase_difference):$/;"	m	class:LoopFilter
+advance_filter	transfer_func.py	/^    def advance_filter(self, phase_difference):$/;"	m	class:LoopFilter
+af	accmeter_1d_adc.py	/^af = plt.subplot2grid((7,1),(2,0),rowspan=4)$/;"	v
+af	accmeter_1d_gui.py	/^af = plt.subplot2grid((7,1),(2,0),rowspan=3)$/;"	v
+af	accmeter_1d_new_gui.py	/^af = plt.subplot2grid((7,1),(2,0),rowspan=3)$/;"	v
+af	accmeter_4chan_adc.py	/^af = plt.subplot2grid((8,1),(4,0),rowspan=3)$/;"	v
+af	accmeter_gui.py	/^af = fig.add_subplot(322)$/;"	v
+af	plant_ecg.py	/^af = plt.subplot2grid((7,1),(2,0),rowspan=4)$/;"	v
+afs	accmeter_1d_adc.py	/^afs = plt.subplot2grid((7,1),(6,0),rowspan=2)$/;"	v
+afs	accmeter_1d_gui.py	/^afs = plt.subplot2grid((7,1),(5,0),rowspan=3)$/;"	v
+afs	accmeter_1d_new_gui.py	/^afs = plt.subplot2grid((7,1),(5,0),rowspan=3)$/;"	v
+afs	accmeter_4chan_adc.py	/^afs = plt.subplot2grid((8,1),(7,0),rowspan=1)$/;"	v
+afs	plant_ecg.py	/^afs = plt.subplot2grid((7,1),(6,0),rowspan=2)$/;"	v
+alpha	bidding.py	/^alpha        = 2$/;"	v
+angles	fdatool.py	/^angles = np.unwrap(np.angle(h))$/;"	v
+apl_mod	IQ_mod.py	/^    def apl_mod(self,d_iq,mod=0):$/;"	m	class:iq_mod
+append	ringbuf.py	/^    def append(self, data):$/;"	m	class:RingBuffer
+arctan	dsb_sc_modem.py	/^arctan = np.arctan(esn\/ecn)$/;"	v
+arctan_n	dsb_sc_modem.py	/^arctan_n = np.arctan(es\/ec)$/;"	v
+arr	dual_tone.py	/^arr = np.array(df['ch1'][4:(4+WINDOW_SIZE)])\/1$/;"	v
+arr	raw_fft.py	/^arr = np.array(df['ch1'][4:(4+WINDOW_SIZE)])\/1$/;"	v
+auto_corr	auto_corr.py	/^def auto_corr(din):$/;"	f
+av_bid	bidding.py	/^av_bid = Slider(plt.axes([0.15, 0.035, 0.7, 0.02]), 'my_avg_bid', valmin=op_bid_start, valmax=op_bid_end, valinit=214.0)$/;"	v
+ax	IQ_mod.py	/^ax = fig.add_subplot(411)$/;"	v
+ax	accmeter_1d_adc.py	/^ax = plt.subplot2grid((7,1),(0,0),rowspan=2)$/;"	v
+ax	accmeter_1d_gui.py	/^ax = plt.subplot2grid((7,1),(0,0),rowspan=2)$/;"	v
+ax	accmeter_1d_new_gui.py	/^ax = plt.subplot2grid((7,1),(0,0),rowspan=2)$/;"	v
+ax	accmeter_4chan_adc.py	/^ax = plt.subplot2grid((8,1),(0,0),rowspan=1)$/;"	v
+ax	accmeter_gui.py	/^ax = fig.add_subplot(321)$/;"	v
+ax	auto_corr.py	/^ax = fig.add_subplot(421)$/;"	v
+ax	bid.py	/^ax = plt.subplot(211)$/;"	v
+ax	bidding.py	/^ax = fig.add_subplot(311)$/;"	v
+ax	dsb_sc_modem.py	/^ax = plt.subplot(411)$/;"	v
+ax	dsb_sc_modem.py	/^ax = plt.subplot(412)$/;"	v
+ax	dsb_sc_modem.py	/^ax = plt.subplot(413)$/;"	v
+ax	iir_fda.py	/^ax = fig.add_subplot(1, 1, 1)$/;"	v
+ax	my_dsss.py	/^ax = fig.add_subplot(311)$/;"	v
+ax	plant_ecg.py	/^ax = plt.subplot2grid((7,1),(0,0),rowspan=2)$/;"	v
+ax	rcos.py	/^    ax = fig.add_subplot(311)$/;"	v	class:my_rcc
+ax	xplotuntitled0.py	/^ax = fig.add_subplot(311)$/;"	v
+ax1	accmeter_4chan_adc.py	/^ax1 = plt.subplot2grid((8,1),(1,0),rowspan=1)$/;"	v
+ax1	general_dpll.py	/^ax1 = fig.add_subplot(211)$/;"	v
+ax2	accmeter_4chan_adc.py	/^ax2 = plt.subplot2grid((8,1),(2,0),rowspan=1)$/;"	v
+ax2	fdatool.py	/^ax2 = ax1.twinx()$/;"	v
+ax2	general_dpll.py	/^ax2 = fig.add_subplot(212)$/;"	v
+ax3	accmeter_4chan_adc.py	/^ax3 = plt.subplot2grid((8,1),(3,0),rowspan=1)$/;"	v
+b	FIR_parameters.py	/^b = signal.firwin(ntaps,fl)$/;"	v
+b	duffing.py	/^b = 1\/16.0$/;"	v
+b	fdatool.py	/^b = signal.firwin(filt_ord,cutoff=FC\/nyq,window=("kaiser",8),pass_zero='highpass')$/;"	v
+b	rcos.py	/^    b = rc_inst.rcc_coef()$/;"	v	class:my_rcc
+base_sig	my_dsss.py	/^base_sig = (np.random.randint(0,2,6)-0.5)*2$/;"	v
+base_up_sig	my_dsss.py	/^base_up_sig = np.kron(base_sig,np.append(1,np.zeros(SPS-1)))$/;"	v
+base_up_sig	my_dsss.py	/^base_up_sig = np.kron(base_up_sig,np.ones_like(PN_CODE))*8$/;"	v
+beta	rcos.py	/^    beta = 0.3$/;"	v	class:my_rcc
+bf	accmeter_gui.py	/^bf = fig.add_subplot(324)$/;"	v
+bid_step	bid.py	/^bid_step     = 0.1$/;"	v
+bid_step	bidding.py	/^bid_step     = 0.1$/;"	v
+bn	transfer_func.py	/^bn = 0.015$/;"	v
+button	matplotlib_tkinter.py	/^button =Tk.Button(master=root, text='Quit', command=_quit)$/;"	v
+bx	IQ_mod.py	/^bx = fig.add_subplot(412)$/;"	v
+bx	accmeter_gui.py	/^bx = fig.add_subplot(323)$/;"	v
+bx	auto_corr.py	/^bx = fig.add_subplot(422)$/;"	v
+bx	bid.py	/^bx = plt.subplot(212)$/;"	v
+bx	bidding.py	/^bx = fig.add_subplot(312)$/;"	v
+bx	dsb_sc_modem.py	/^bx = plt.subplot(414)$/;"	v
+bx	my_dsss.py	/^bx = fig.add_subplot(312)$/;"	v
+bx	rcos.py	/^    bx = fig.add_subplot(312)$/;"	v	class:my_rcc
+c	dsb_sc_modem.py	/^c = sig_src(fs,'cos',f0,1,0,t)$/;"	v
+c	fdatool.py	/^c = np.array(list(map(int,b*(2**17))))$/;"	v
+c1	qpsk_mod_demod.py	/^c1 = sqrt(2\/tb)*np.cos(2*np.pi*fc*t)  # carrier frequency cosine wave$/;"	v
+c2	qpsk_mod_demod.py	/^c2 = sqrt(2\/tb)*np.sin(2*np.pi*fc*t)  # carrier frequency sine wave$/;"	v
+calc_all	tmps.py	/^def calc_all(D1,D2,C1,C2,C3,C4,C5,C6):$/;"	f
+calc_base	bid.py	/^def calc_base(mb,mbc,opbs,opbe,opbc,bid_step):$/;"	f
+calc_base	bidding.py	/^def calc_base(mb,mbc,opbs,opbe,opbc,bid_step,alpha):$/;"	f
+calc_lr	linear regression.py	/^def calc_lr(target,samples):$/;"	f
+calc_n	untitled1.py	/^def calc_n(n):$/;"	f
+calc_off	tmps.py	/^def calc_off(dT,C2,C4):$/;"	f
+calc_ord	accmeter_1d_adc.py	/^def calc_ord(reg_val):$/;"	f
+calc_ord	accmeter_1d_gui.py	/^def calc_ord(reg_val):$/;"	f
+calc_ord	accmeter_1d_new_gui.py	/^def calc_ord(reg_val):$/;"	f
+calc_ord	accmeter_4chan_adc.py	/^def calc_ord(reg_val):$/;"	f
+calc_ord	plant_ecg.py	/^def calc_ord(reg_val):$/;"	f
+calc_pres	tmps.py	/^def calc_pres(D1,SEN,OFF):$/;"	f
+calc_score	bid.py	/^def calc_score(my_offer,base):$/;"	f
+calc_score	bidding.py	/^def calc_score(my_offer,base):$/;"	f
+calc_temp	tmps.py	/^def calc_temp(D2,C5,C6):$/;"	f
+calc_xor	xor_calc.py	/^def calc_xor(din):$/;"	f
+canvas	matplotlib_tkinter.py	/^canvas =FigureCanvasTkAgg(f, master=root)$/;"	v
+cf	accmeter_gui.py	/^cf = fig.add_subplot(326)$/;"	v
+cf	matched_filter.py	/^cf = 200$/;"	v
+channel	qpsk_mod_demod.py	/^channel = noise + qpsk    # adding noise to qpsk modulated wave$/;"	v
+checksum	accmeter_1d_adc.py	/^def checksum(arr_in):$/;"	f
+checksum	accmeter_1d_gui.py	/^def checksum(arr_in):$/;"	f
+checksum	accmeter_1d_new_gui.py	/^def checksum(arr_in):$/;"	f
+checksum	accmeter_4chan_adc.py	/^def checksum(arr_in):$/;"	f
+checksum	plant_ecg.py	/^def checksum(arr_in):$/;"	f
+choose_windows	accmeter_1d_adc.py	/^def choose_windows(name='Hanning', N=20): # Rect\/Hanning\/Hamming $/;"	f
+choose_windows	accmeter_1d_gui.py	/^def choose_windows(name='Hanning', N=20): # Rect\/Hanning\/Hamming $/;"	f
+choose_windows	accmeter_1d_new_gui.py	/^def choose_windows(name='Hanning', N=20): # Rect\/Hanning\/Hamming $/;"	f
+choose_windows	accmeter_4chan_adc.py	/^def choose_windows(name='Hanning', N=20): # Rect\/Hanning\/Hamming $/;"	f
+choose_windows	audio_sim.py	/^def choose_windows(name='Hanning', N=20): # Rect\/Hanning\/Hamming $/;"	f
+choose_windows	costas_loop.py	/^def choose_windows(name='Hanning', N=20): # Rect\/Hanning\/Hamming $/;"	f
+choose_windows	dual_tone.py	/^def choose_windows(name='Hanning', N=20): # Rect\/Hanning\/Hamming $/;"	f
+choose_windows	fft_interpolation.py	/^def choose_windows(name='Hanning', N=20): # Rect\/Hanning\/Hamming $/;"	f
+choose_windows	ica_2comps.py	/^def choose_windows(name='Hanning', N=20): # Rect\/Hanning\/Hamming $/;"	f
+choose_windows	plant_ecg.py	/^def choose_windows(name='Hanning', N=20): # Rect\/Hanning\/Hamming $/;"	f
+choose_windows	raw_fft.py	/^def choose_windows(name='Hanning', N=20): # Rect\/Hanning\/Hamming $/;"	f
+cltf	transfer_func.py	/^cltf = sy.cancel(oltf\/(1+oltf),z)$/;"	v
+cn	goertzel.py	/^cn = np.cos(2*np.pi*noise_freq*np.arange(N*2)\/sample_freq)$/;"	v
+cnt_ind	quant_debut.py	/^def cnt_ind(arr):$/;"	f
+code_s1	cmda.py	/^code_s1 = [1,1,1,-1,1,-1,-1,-1]$/;"	v
+code_s2	cmda.py	/^code_s2 = [1,-1,1,1,1,-1,1,1]$/;"	v
+coef1	duffing.py	/^coef1 = 0.5*h**2.0$/;"	v
+coef2	duffing.py	/^coef2 = 1.0\/6.0*h**3.0$/;"	v
+coef3	duffing.py	/^coef3 = 1.0\/24.0*h**4.0$/;"	v
+coef4	duffing.py	/^coef4 = 1.0\/120.0*h**5.0$/;"	v
+colors	ica_2comps.py	/^colors = ['red', 'steelblue', 'orange']$/;"	v
+colors	ica_demo.py	/^colors = ['red', 'steelblue', 'orange']$/;"	v
+comb_tb	costas_loop.py	/^def comb_tb():$/;"	f
+comb_tb	rdc_sim.py	/^def comb_tb():$/;"	f
+compact	ringbuf.py	/^    def compact(self):$/;"	m	class:RingBuffer
+config	test.py	/^config = dict({$/;"	v
+constellation	iq_test.py	/^def constellation(IQ, mode = 'bpsk'):$/;"	f
+cont_static	quant_debut.py	/^def cont_static(arr):$/;"	f
+cor	IQ_mod.py	/^cor = np.vstack((cor_i,cor_q))$/;"	v
+cor_i	IQ_mod.py	/^cor_i = iq_mod_inst.despread(zo,PN_CODE)$/;"	v
+cor_q	IQ_mod.py	/^cor_q = iq_mod_inst.despread(zo,PN_CODE)$/;"	v
+corr	gold.py	/^def corr(seq1,seq2):$/;"	f
+corr_si	iq_test.py	/^corr_si = np.kron(pn[::-1],np.ones(int(spr\/fs)))$/;"	v
+corr_sq	iq_test.py	/^corr_sq = np.kron(pn[::-1],np.sin(2*np.pi*fs*np.arange(spr\/fs)\/spr))$/;"	v
+cos	iq_test.py	/^cos = np.kron(np.ones(sp_si.size),np.cos(2*np.pi*fs*np.arange(spr\/fs)\/spr+phi))$/;"	v
+cos_out	general_dpll.py	/^cos_out = np.ones(M)$/;"	v
+costas_param	FIR_parameters.py	/^def costas_param(N,nita,lb,dg):$/;"	f
+costas_param	iq_test.py	/^def costas_param(N,nita,lb,dg):$/;"	f
+costas_tb	costas_loop.py	/^def costas_tb():    $/;"	f
+costas_tb	rdc_sim.py	/^def costas_tb():$/;"	f
+cpos_calc	quant_debut.py	/^def cpos_calc(pvt,price):$/;"	f
+cross	transfer_func.py	/^def cross(arr, th):$/;"	f
+cs	goertzel.py	/^cs = m*1+cn+wn*0$/;"	v
+cx	IQ_mod.py	/^cx = fig.add_subplot(413)$/;"	v
+cx	accmeter_gui.py	/^cx = fig.add_subplot(325)$/;"	v
+cx	auto_corr.py	/^cx = fig.add_subplot(423)$/;"	v
+cx	my_dsss.py	/^cx = fig.add_subplot(313)$/;"	v
+cx	rcos.py	/^    cx = fig.add_subplot(313)$/;"	v	class:my_rcc
+d	zen_opt.py	/^d =get_ohlcv('binanceus','ETH\/USDT','2h',300,2000)$/;"	v
+d1	test.py	/^d1 = Acount(config)$/;"	v
+data	dual_tone.py	/^data=df.head()#默认读取前5行的数据$/;"	v
+data	linear regression.py	/^data = np.loadtxt(open("test.csv","rb"),delimiter=",",skiprows=0)$/;"	v
+data	matched_filter.py	/^data = sig_gen(cf,spr,rep,off)$/;"	v
+data	raw_fft.py	/^data=df.head()#默认读取前5行的数据$/;"	v
+dd	zen_opt.py	/^dd = segment(tt)$/;"	v
+decode	cmda.py	/^def decode(s,Z):$/;"	f
+delta	audio_sim.py	/^delta = np.pi*2$/;"	v
+demod	dbpsk_modem.py	/^def demod(din,f0,fs):$/;"	f
+demod	qpsk_mod_demod.py	/^demod = np.zeros((16,1))    # demodulated signal  (demodulation of noise + qpsk modulated wave)$/;"	v
+demod_tt	iq_test.py	/^def demod_tt(IQ, carrier_freq = 1000, spr = 4000, offset = 'off',os = 0):$/;"	f
+den	transfer_func.py	/^den = np.array(den,dtype='float')$/;"	v
+despread	IQ_mod.py	/^    def despread(self,din,code):$/;"	m	class:iq_mod
+despread	my_dsss.py	/^def despread(din,code):$/;"	f
+despread_d	my_dsss.py	/^despread_d = despread(shape_filtered2,PN_CODE)$/;"	v
+df	IQ_mod.py	/^df = dmm[0]$/;"	v
+df	IQ_mod.py	/^df = dmm[1]$/;"	v
+df	dual_tone.py	/^df=pd.read_excel('\/home\/aureoleday\/h29.xlsx')#这个会直接默认读取到这个Excel的第一个表单$/;"	v
+df	raw_fft.py	/^df=pd.read_excel('\/home\/aureoleday\/h18.xlsx')#这个会直接默认读取到这个Excel的第一个表单$/;"	v
+di	cmda.py	/^di = decode(code_s1,Z_star)$/;"	v
+di	cmda.py	/^di = decode(code_s2,Z_star)$/;"	v
+dif	bpsk_modem.py	/^dif = 'off'$/;"	v
+diff	bpsk_modem.py	/^def diff(din,mode = 'encode'):$/;"	f
+diff	iq_test.py	/^def diff(din,mode = 'encode'):$/;"	f
+diff_demod	dsb_sc_modem.py	/^def diff_demod(fs,fc,fr,i_cd,q_cd,i_rd,q_rd):$/;"	f
+din	IQ_mod.py	/^din = din1 + din2$/;"	v
+din	rcos.py	/^    din = np.kron((np.random.randint(0,2,32)-0.5)*2,np.append([1],np.zeros(sps-1)))$/;"	v	class:my_rcc
+din1	IQ_mod.py	/^din1 = np.tile(np.vstack((PN_CODE,PN_CODE)),4)$/;"	v
+din2	IQ_mod.py	/^din2 = din1$/;"	v
+din2	rcos.py	/^    din2 = din.reshape(-1,int((len(b)-1)\/2))$/;"	v	class:my_rcc
+dll	my_dll.py	/^class dll:$/;"	c
+dm	IQ_mod.py	/^dm = iq_mod_inst.apl_mod(din,mod=1)$/;"	v
+dmm	IQ_mod.py	/^dmm = iq_mod_inst.mix(dmn,1)$/;"	v
+dmn	IQ_mod.py	/^dmn = dm + noise*1$/;"	v
+dout	dbpsk_modem.py	/^dout = demod(msn,f0,fs)$/;"	v
+dout	rcos.py	/^    dout = rc_inst.rcc_filt(din)$/;"	v	class:my_rcc
+dout2	rcos.py	/^    dout2 = []$/;"	v	class:my_rcc
+dout_rx	rcos.py	/^    dout_rx = rc_inst.rcc_filt(dout)$/;"	v	class:my_rcc
+dpll	iq_test.py	/^def dpll(din,upsample):$/;"	f
+ds_	iq_test.py	/^ds_ = np.convolve(s_wn,corr_sq)$/;"	v
+ds_i	iq_test.py	/^ds_i = np.convolve(mix_i,corr_si)$/;"	v
+ds_q	iq_test.py	/^ds_q = np.convolve(mix_q,corr_si)$/;"	v
+duration	sig_gen.py	/^    duration=50000, # seconds to play sound$/;"	v
+dx	IQ_mod.py	/^dx = fig.add_subplot(414)$/;"	v
+dx	auto_corr.py	/^dx = fig.add_subplot(424)$/;"	v
+e	dsb_sc_modem.py	/^e = sig_src(fs,'sin',fc,1,0,t)$/;"	v
+e_D	general_dpll.py	/^e_D = [] #phase-error output$/;"	v
+e_F	general_dpll.py	/^e_F = [] #loop filter output$/;"	v
+e_f	transfer_func.py	/^e_f = sy.cancel(hr*(1-cltf),z)$/;"	v
+e_p	transfer_func.py	/^e_p = sy.cancel(hs*(1-cltf),z)$/;"	v
+ec	dsb_sc_modem.py	/^ec = e*c$/;"	v
+ecn	dsb_sc_modem.py	/^ecn = AWGN(ec,SNR)$/;"	v
+ef	costas_loop.py	/^    def ef(self):$/;"	m	class:LoopFilter
+ef	transfer_func.py	/^    def ef(self):$/;"	m	class:LoopFilter
+encode	cmda.py	/^def encode(s,bit):$/;"	f
+es	dsb_sc_modem.py	/^es = e*s$/;"	v
+esn	dsb_sc_modem.py	/^esn = AWGN(es,SNR)$/;"	v
+even_sig	qpsk_mod_demod.py	/^even_sig = np.zeros((16,100))$/;"	v
+ex	auto_corr.py	/^ex = fig.add_subplot(425)$/;"	v
+ex	quant_debut.py	/^ex = 'binanceus'$/;"	v
+expr	ptags.py	/^expr = '^[ \\t]*(def|class)[ \\t]+([a-zA-Z0-9_]+)[ \\t]*[:\\(]'$/;"	v
+f	matplotlib_tkinter.py	/^f =Figure(figsize=(5,4), dpi=100)$/;"	v
+f0	dbpsk_modem.py	/^f0 = 200$/;"	v
+f0	dsb_sc_modem.py	/^f0 = 10$/;"	v
+f0	fft_interpolation.py	/^f0 = 100$/;"	v
+f1	audio_sim.py	/^f1 = 400$/;"	v
+f1	fft_interpolation.py	/^f1 = 105$/;"	v
+f2	audio_sim.py	/^f2 = f1*3$/;"	v
+fc	costas_loop.py	/^fc = 100$/;"	v
+fc	dsb_sc_modem.py	/^fc = 100$/;"	v
+fc	qpsk_mod_demod.py	/^fc = 100;    # carrier frequency$/;"	v
+fc	rdc_sim.py	/^fc = 20000$/;"	v
+fdir	quant_debut.py	/^def fdir(data):$/;"	f
+fft_size	accmeter_1d_adc.py	/^fft_size = WINDOW_SIZE$/;"	v
+fft_size	accmeter_1d_gui.py	/^fft_size = WINDOW_SIZE$/;"	v
+fft_size	accmeter_1d_new_gui.py	/^fft_size = WINDOW_SIZE$/;"	v
+fft_size	accmeter_4chan_adc.py	/^fft_size = WINDOW_SIZE$/;"	v
+fft_size	audio_sim.py	/^fft_size = WINDOW_SIZE$/;"	v
+fft_size	dual_tone.py	/^fft_size = WINDOW_SIZE$/;"	v
+fft_size	fft_interpolation.py	/^fft_size = N*FS$/;"	v
+fft_size	ica_2comps.py	/^fft_size = WINDOW_SIZE$/;"	v
+fft_size	plant_ecg.py	/^fft_size = WINDOW_SIZE$/;"	v
+fft_size	raw_fft.py	/^fft_size = WINDOW_SIZE$/;"	v
+fig	IQ_mod.py	/^fig = plt.figure()$/;"	v
+fig	accmeter_1d_adc.py	/^fig = plt.figure()$/;"	v
+fig	accmeter_1d_gui.py	/^fig = plt.figure()$/;"	v
+fig	accmeter_1d_new_gui.py	/^fig = plt.figure()$/;"	v
+fig	accmeter_4chan_adc.py	/^fig = plt.figure()$/;"	v
+fig	accmeter_gui.py	/^fig = plt.figure()$/;"	v
+fig	auto_corr.py	/^fig = plt.figure()$/;"	v
+fig	bid.py	/^fig = plt.figure()$/;"	v
+fig	bidding.py	/^fig = plt.figure()$/;"	v
+fig	general_dpll.py	/^fig = plt.figure()$/;"	v
+fig	iir_fda.py	/^fig = plt.figure()$/;"	v
+fig	my_dsss.py	/^fig = plt.figure()$/;"	v
+fig	plant_ecg.py	/^fig = plt.figure()$/;"	v
+fig	rcos.py	/^    fig = plt.figure()$/;"	v	class:my_rcc
+fig	xplotuntitled0.py	/^fig = plt.figure()$/;"	v
+filt	IQ_mod.py	/^    def filt(self,din):$/;"	m	class:my_filter
+filt	accmeter_1d_adc.py	/^    def filt(self,din):$/;"	m	class:iirpeak_filter
+filt	accmeter_1d_adc.py	/^    def filt(self,din):$/;"	m	class:my_filter
+filt	accmeter_1d_gui.py	/^    def filt(self,din):$/;"	m	class:iirpeak_filter
+filt	accmeter_1d_gui.py	/^    def filt(self,din):$/;"	m	class:my_filter
+filt	accmeter_1d_new_gui.py	/^    def filt(self,din):$/;"	m	class:iirpeak_filter
+filt	accmeter_1d_new_gui.py	/^    def filt(self,din):$/;"	m	class:my_filter
+filt	accmeter_4chan_adc.py	/^    def filt(self,din):$/;"	m	class:iirpeak_filter
+filt	accmeter_4chan_adc.py	/^    def filt(self,din):$/;"	m	class:my_filter
+filt	plant_ecg.py	/^    def filt(self,din):$/;"	m	class:iirnotch_filter
+filt	plant_ecg.py	/^    def filt(self,din):$/;"	m	class:iirpeak_filter
+filt	plant_ecg.py	/^    def filt(self,din):$/;"	m	class:my_filter
+filt_inst	accmeter_1d_adc.py	/^filt_inst = iirpeak_filter(FS,473,40)$/;"	v
+filt_inst	accmeter_1d_gui.py	/^filt_inst = iirpeak_filter(FS,473,40)$/;"	v
+filt_inst	accmeter_1d_new_gui.py	/^filt_inst = iirpeak_filter(FS,473,40)$/;"	v
+filt_inst	accmeter_4chan_adc.py	/^filt_inst = iirpeak_filter(FS,473,40)$/;"	v
+filt_inst	plant_ecg.py	/^filt_inst = iirnotch_filter(FS,50,40)$/;"	v
+filt_ord	fdatool.py	/^filt_ord = 31$/;"	v
+fm	costas_loop.py	/^fm = 10$/;"	v
+fm	rdc_sim.py	/^fm = 2000$/;"	v
+fpoly	lfsr_test.py	/^fpoly = [4,2,1]$/;"	v
+fractal	quant_debut.py	/^def fractal(data,dist):$/;"	f
+fractal	zen_opt.py	/^def fractal(data,dist):$/;"	f
+frequency	sig_gen.py	/^    frequency=470.00, # Hz, waves per second A4$/;"	v
+fs	costas_loop.py	/^fs = 1000$/;"	v
+fs	dbpsk_modem.py	/^fs = 3200$/;"	v
+fs	dsb_sc_modem.py	/^fs = 1000$/;"	v
+fs	iq_test.py	/^fs = SIG_FREQ$/;"	v
+fs	rdc_sim.py	/^fs = 200000$/;"	v
+fs	tf.py	/^fs = 200000$/;"	v
+fs	transfer_func.py	/^fs = 200000$/;"	v
+func	accmeter_1d_adc.py	/^def func(a):$/;"	f
+func	accmeter_1d_gui.py	/^def func(a):$/;"	f
+func	accmeter_1d_new_gui.py	/^def func(a):$/;"	f
+func	accmeter_4chan_adc.py	/^def func(a):$/;"	f
+func	accmeter_gui.py	/^def func(a):$/;"	f
+func	plant_ecg.py	/^def func(a):$/;"	f
+func	ser_test.py	/^def func(x):$/;"	f
+fvp	transfer_func.py	/^fvp = sy.limit((z-1)*e_p,z,1)$/;"	v
+fvr	transfer_func.py	/^fvr = sy.limit((z-1)*e_f,z,1)$/;"	v
+fx	auto_corr.py	/^fx = fig.add_subplot(426)$/;"	v
+g	transfer_func.py	/^g = (kp+ki-kp\/z)\/(1-1\/z)$/;"	v
+gain	accmeter_gui.py	/^gain = 3.9e-6$/;"	v
+gain	transfer_func.py	/^gain = 0.5$/;"	v
+gain_margin	transfer_func.py	/^gain_margin = -mag[abs(phase+180).argmin()]$/;"	v
+gamma	duffing.py	/^gamma = 0.1$/;"	v
+gdir	quant_debut.py	/^def gdir(arr):$/;"	f
+gen_all	randtree.py	/^    def gen_all(self):$/;"	m	class:rand_tree
+gen_frames	accmeter_1d_adc.py	/^def gen_frames():$/;"	f
+gen_frames	accmeter_1d_gui.py	/^def gen_frames():$/;"	f
+gen_frames	accmeter_1d_new_gui.py	/^def gen_frames():$/;"	f
+gen_frames	accmeter_4chan_adc.py	/^def gen_frames():$/;"	f
+gen_frames	accmeter_gui.py	/^def gen_frames():$/;"	f
+gen_frames	plant_ecg.py	/^def gen_frames():$/;"	f
+gen_node	randtree.py	/^    def gen_node(self):$/;"	m	class:rand_tree
+get	accmeter_1d_adc.py	/^    def get(self,mtype='acc'):$/;"	m	class:my_mav
+get	accmeter_1d_gui.py	/^    def get(self,mtype='acc'):$/;"	m	class:my_mav
+get	accmeter_1d_new_gui.py	/^    def get(self,mtype='acc'):$/;"	m	class:my_mav
+get	accmeter_4chan_adc.py	/^    def get(self,mtype='acc'):$/;"	m	class:my_mav
+get	plant_ecg.py	/^    def get(self,mtype='acc'):$/;"	m	class:my_mav
+get_av	quant_debut.py	/^def get_av():    $/;"	f
+get_av	ss.py	/^def get_av(timeout):$/;"	f
+get_av	zen_opt.py	/^def get_av():    $/;"	f
+get_av_nodes_index	randtree.py	/^    def get_av_nodes_index(self):$/;"	m	class:rand_tree
+get_bins	quant_debut.py	/^def get_bins(data,col):$/;"	f
+get_data	ss.py	/^def get_data(ex_id,timeout):$/;"	f
+get_es	ss.py	/^def get_es(ex_id,timeout):$/;"	f
+get_ex	quant_debut.py	/^def get_ex(ex_name,timeout):$/;"	f
+get_ex	zen_opt.py	/^def get_ex(ex_name,timeout):$/;"	f
+get_markets	quant_debut.py	/^def get_markets(exchange):$/;"	f
+get_ohlcv	quant_debut.py	/^def get_ohlcv(exchange,pair,freq,sin,lim):$/;"	f
+get_ohlcv	zen_opt.py	/^def get_ohlcv(exchange,pair,freq,sin,lim):$/;"	f
+get_ohlcv_til	quant_debut.py	/^def get_ohlcv_til(exchange,pair,freq,sin,lim): $/;"	f
+get_p	transfer_func.py	/^    def get_p(self):$/;"	m	class:LoopFilter
+gg	chaos_logistic.py	/^def gg(k,x):$/;"	f
+goertzel	accmeter_1d_adc.py	/^def goertzel(din,k,N):$/;"	f
+goertzel	accmeter_1d_gui.py	/^def goertzel(din,k,N):$/;"	f
+goertzel	accmeter_1d_new_gui.py	/^def goertzel(din,k,N):$/;"	f
+goertzel	accmeter_4chan_adc.py	/^def goertzel(din,k,N):$/;"	f
+goertzel	goertzel.py	/^def goertzel(din,k,N):$/;"	f
+goertzel	plant_ecg.py	/^def goertzel(din,k,N):$/;"	f
+gold	gold.py	/^    gold = GoldSequence(poly1, init,$/;"	v
+gold_sequence	gold.py	/^    gold_sequence = (2 * np.array(gold.step()) - 1)  # * (2**11-1)$/;"	v
+gx	auto_corr.py	/^gx = fig.add_subplot(427)$/;"	v
+h	duffing.py	/^h = 1e-1 # time step$/;"	v
+h	ss.py	/^h = get_av(3000)$/;"	v
+h	transfer_func.py	/^h = 1\/(1-1\/z)$/;"	v
+hexsend	accmeter_gui.py	/^def hexsend(string_data=''):$/;"	f
+hr	transfer_func.py	/^hr = kd*z\/(z-1)**2$/;"	v
+hs	transfer_func.py	/^hs = kd\/(1-1\/z)$/;"	v
+ica	ica_2comps.py	/^ica = FastICA(n_components=2)$/;"	v
+ica	ica_demo.py	/^ica = FastICA(n_components=3)$/;"	v
+idff	IQ_mod.py	/^idff = my_fft(dmn[0])$/;"	v
+idff1	auto_corr.py	/^idff1 = my_fft(x)$/;"	v
+idff2	auto_corr.py	/^idff2 = my_fft(y4)$/;"	v
+iirnotch_filter	plant_ecg.py	/^class iirnotch_filter:$/;"	c
+iirpeak_filter	accmeter_1d_adc.py	/^class iirpeak_filter:$/;"	c
+iirpeak_filter	accmeter_1d_gui.py	/^class iirpeak_filter:$/;"	c
+iirpeak_filter	accmeter_1d_new_gui.py	/^class iirpeak_filter:$/;"	c
+iirpeak_filter	accmeter_4chan_adc.py	/^class iirpeak_filter:$/;"	c
+iirpeak_filter	plant_ecg.py	/^class iirpeak_filter:$/;"	c
+in_buf	accmeter_1d_adc.py	/^in_buf = []$/;"	v
+in_buf	accmeter_1d_gui.py	/^in_buf = []$/;"	v
+in_buf	accmeter_1d_new_gui.py	/^in_buf = []$/;"	v
+in_buf	accmeter_4chan_adc.py	/^in_buf = []$/;"	v
+in_buf	accmeter_gui.py	/^in_buf = []$/;"	v
+in_buf	plant_ecg.py	/^in_buf = []$/;"	v
+inb_q	accmeter_1d_adc.py	/^inb_q = queue.Queue(0)$/;"	v
+inb_q	accmeter_1d_gui.py	/^inb_q = queue.Queue(0)$/;"	v
+inb_q	accmeter_1d_new_gui.py	/^inb_q = queue.Queue(0)$/;"	v
+inb_q	accmeter_4chan_adc.py	/^inb_q = queue.Queue(0)$/;"	v
+inb_q	accmeter_gui.py	/^inb_q = queue.Queue(0)$/;"	v
+inb_q	plant_ecg.py	/^inb_q = queue.Queue(0)$/;"	v
+init	gold.py	/^    init = np.zeros(5).astype(int).tolist()$/;"	v
+initial	accmeter_1d_adc.py	/^def initial():  $/;"	f
+initial	accmeter_1d_gui.py	/^def initial():$/;"	f
+initial	accmeter_1d_new_gui.py	/^def initial():$/;"	f
+initial	accmeter_4chan_adc.py	/^def initial():  $/;"	f
+initial	accmeter_gui.py	/^def initial():$/;"	f
+initial	plant_ecg.py	/^def initial():$/;"	f
+inp	fft_comp.py	/^inp = np.sin(x)$/;"	v
+input_signal	general_dpll.py	/^input_signal = np.zeros(M)$/;"	v
+insert	test111.py	/^    def insert(self,din):$/;"	m	class:my_mav
+integrator_out	general_dpll.py	/^integrator_out = 0$/;"	v
+iq_mod	IQ_mod.py	/^class iq_mod:$/;"	c
+iq_mod_inst	IQ_mod.py	/^iq_mod_inst = iq_mod(SIG_FREQ,SAMPLE_FREQ,rep_N=1)$/;"	v
+izip	sig_gen.py	/^    izip = zip$/;"	v
+k	duffing.py	/^k = 1$/;"	v
+k	general_dpll.py	/^k = 1$/;"	v
+k	goertzel.py	/^k = (N*target_freq)\/sample_freq$/;"	v
+k1	cov_test.py	/^k1 = 4$/;"	v
+k2	cov_test.py	/^k2 = 1$/;"	v
+ki	tf.py	/^ki = 0.004741$/;"	v
+kp	tf.py	/^kp = 0.177760$/;"	v
+lfsr	iq_test.py	/^def lfsr(N=3,cf=1,phase = 0):$/;"	f
+logstic	chaos_logistic.py	/^def logstic(k,x):$/;"	f
+loopfilter2	iq_test.py	/^def loopfilter2(din,k1,k2,phi):$/;"	f
+lp	transfer_func.py	/^lp = LoopFilter(gain,bn,zeta)$/;"	v
+lpf_inst_i	IQ_mod.py	/^lpf_inst_i = my_filter(3,[0.15],'lowpass')$/;"	v
+lpf_inst_q	IQ_mod.py	/^lpf_inst_q = my_filter(3,0.15,'lowpass')$/;"	v
+m	goertzel.py	/^m = np.cos(2*np.pi*sig_freq*np.arange(N*2)\/sample_freq)$/;"	v
+m	qpsk_mod_demod.py	/^m = []$/;"	v
+m_s	qpsk_mod_demod.py	/^        m_s = (-1)*np.ones((1,len(t)))$/;"	v
+m_s	qpsk_mod_demod.py	/^        m_s = np.ones((1,len(t)))$/;"	v
+main	mqtt_client_usr.py	/^def main():$/;"	f
+main	ptags.py	/^def main():$/;"	f
+matched_filter	matched_filter.py	/^def matched_filter(din,carrier_freq,spr,rep):$/;"	f
+matcher	ptags.py	/^matcher = re.compile(expr)$/;"	v
+mav_insert	accmeter_1d_adc.py	/^    def mav_insert(self,din):$/;"	m	class:my_mav
+mav_insert	accmeter_1d_gui.py	/^    def mav_insert(self,din):$/;"	m	class:my_mav
+mav_insert	accmeter_1d_new_gui.py	/^    def mav_insert(self,din):$/;"	m	class:my_mav
+mav_insert	accmeter_4chan_adc.py	/^    def mav_insert(self,din):$/;"	m	class:my_mav
+mav_insert	plant_ecg.py	/^    def mav_insert(self,din):$/;"	m	class:my_mav
+mav_inst	accmeter_1d_adc.py	/^mav_inst = my_mav(FFT_MAV_LEN,(WINDOW_SIZE\/2)+1)$/;"	v
+mav_inst	accmeter_1d_gui.py	/^mav_inst = my_mav(FFT_MAV_LEN,(WINDOW_SIZE\/2)+1)$/;"	v
+mav_inst	accmeter_1d_new_gui.py	/^mav_inst = my_mav(FFT_MAV_LEN,(WINDOW_SIZE\/2)+1)$/;"	v
+mav_inst	accmeter_4chan_adc.py	/^mav_inst = my_mav(FFT_MAV_LEN,(WINDOW_SIZE\/2)+1)$/;"	v
+mav_inst	plant_ecg.py	/^mav_inst = my_mav(FFT_MAV_LEN,(WINDOW_SIZE\/2)+1)$/;"	v
+mav_inst	test111.py	/^mav_inst = my_mav(8,12)$/;"	v
+mix	IQ_mod.py	/^    def mix(self,d_iq,phase=0):$/;"	m	class:iq_mod
+mix_i	iq_test.py	/^mix_i = s_wn*cos$/;"	v
+mix_q	iq_test.py	/^mix_q = s_wn*sin$/;"	v
+mks	quant_debut.py	/^mks = get_markets(ex)$/;"	v
+mls_1	gold.py	/^        mls_1 = LFSR(poly1, init, samples_per_frame=2 ** len(init) - 1, matlab=True)$/;"	v
+mls_2	gold.py	/^        mls_2 = LFSR(poly2, init, samples_per_frame=2 ** len(init) - 1, matlab=True)$/;"	v
+mod_iq	bpsk_modem.py	/^def mod_iq(IQ, carrier_freq = 1000, spr = 4000, offset = 'off'):$/;"	f
+mod_iq	iq_test.py	/^def mod_iq(IQ, carrier_freq = 1000, spr = 4000, offset = 'off'):$/;"	f
+mode	bpsk_modem.py	/^mode = 'bpsk'$/;"	v
+models	ica_2comps.py	/^models = [X, S, S_, H]$/;"	v
+models	ica_demo.py	/^models = [X, S, S_, H]$/;"	v
+monot	quant_debut.py	/^def monot(arr):$/;"	f
+ms	dbpsk_modem.py	/^ms = np.kron((np.random.randint(0,2,N)-0.5)*2,osc)$/;"	v
+msn	dbpsk_modem.py	/^msn = AWGN(ms,SNR)$/;"	v
+msp_si	iq_test.py	/^msp_si = np.kron(sp_si,np.cos(2*np.pi*fs*np.arange(spr\/fs)\/spr))$/;"	v
+mult_t	quant_debut.py	/^def mult_t(mk):$/;"	f
+my_bid	bid.py	/^my_bid       = 215$/;"	v
+my_bid	bidding.py	/^my_bid       = 216$/;"	v
+my_bid_cnt	bid.py	/^my_bid_cnt   = 3$/;"	v
+my_bid_cnt	bidding.py	/^my_bid_cnt   = 3$/;"	v
+my_fft	IQ_mod.py	/^def my_fft(din):$/;"	f
+my_fft	accmeter_1d_adc.py	/^def my_fft(din):$/;"	f
+my_fft	accmeter_1d_gui.py	/^def my_fft(din):$/;"	f
+my_fft	accmeter_1d_new_gui.py	/^def my_fft(din):$/;"	f
+my_fft	accmeter_4chan_adc.py	/^def my_fft(din):$/;"	f
+my_fft	accmeter_gui.py	/^def my_fft(din):$/;"	f
+my_fft	audio_sim.py	/^def my_fft(din):$/;"	f
+my_fft	auto_corr.py	/^def my_fft(din):$/;"	f
+my_fft	costas_loop.py	/^def my_fft(din,fft_size):$/;"	f
+my_fft	dual_tone.py	/^def my_fft(din):$/;"	f
+my_fft	fft_interpolation.py	/^def my_fft(din):$/;"	f
+my_fft	ica_2comps.py	/^def my_fft(din):$/;"	f
+my_fft	plant_ecg.py	/^def my_fft(din):$/;"	f
+my_fft	raw_fft.py	/^def my_fft(din):$/;"	f
+my_fft	rdc_sim.py	/^def my_fft(din,fft_size):$/;"	f
+my_filter	IQ_mod.py	/^class my_filter:$/;"	c
+my_filter	accmeter_1d_adc.py	/^class my_filter:$/;"	c
+my_filter	accmeter_1d_gui.py	/^class my_filter:$/;"	c
+my_filter	accmeter_1d_new_gui.py	/^class my_filter:$/;"	c
+my_filter	accmeter_4chan_adc.py	/^class my_filter:$/;"	c
+my_filter	plant_ecg.py	/^class my_filter:$/;"	c
+my_mav	accmeter_1d_adc.py	/^class my_mav(object):$/;"	c
+my_mav	accmeter_1d_gui.py	/^class my_mav(object):$/;"	c
+my_mav	accmeter_1d_new_gui.py	/^class my_mav(object):$/;"	c
+my_mav	accmeter_4chan_adc.py	/^class my_mav(object):$/;"	c
+my_mav	plant_ecg.py	/^class my_mav(object):$/;"	c
+my_mav	test111.py	/^class my_mav(object):$/;"	c
+my_offer	bid.py	/^my_offer = 215$/;"	v
+my_offer	bidding.py	/^my_offer = 215$/;"	v
+my_rcc	rcos.py	/^class my_rcc:$/;"	c
+n_samples	ica_2comps.py	/^n_samples = 2048$/;"	v
+n_samples	ica_demo.py	/^n_samples = 2048$/;"	v
+names	ica_2comps.py	/^names = ['Observations (mixed signal)',$/;"	v
+names	ica_demo.py	/^names = ['Observations (mixed signal)',$/;"	v
+noise	IQ_mod.py	/^noise = np.random.randn(dm.shape[0],dm.shape[1])$/;"	v
+noise	audio_sim.py	/^noise = np.random.randn(sig_a.size)$/;"	v
+noise	auto_corr.py	/^noise = np.random.randn(x.shape[0])$/;"	v
+noise	fft_interpolation.py	/^noise = np.random.randn(t_span.size)$/;"	v
+noise	my_dsss.py	/^noise = np.random.randn(shape_filtered.shape[0])\/4$/;"	v
+noise	qpsk_mod_demod.py	/^noise = np.random.normal(0, 0.1, [16,100]) # noise using random function$/;"	v
+noise_freq	goertzel.py	/^noise_freq = 360$/;"	v
+ntaps	FIR_parameters.py	/^ntaps = 48$/;"	v
+num	transfer_func.py	/^num = np.array(num,dtype='float')$/;"	v
+nyq	fdatool.py	/^nyq = FS\/2$/;"	v
+odd_sig	qpsk_mod_demod.py	/^odd_sig = np.zeros((16,100))$/;"	v
+off	matched_filter.py	/^off = 20$/;"	v
+oltf	transfer_func.py	/^oltf = sy.cancel(g*h*z**(-1),z)$/;"	v
+omega	duffing.py	/^omega = 2.0$/;"	v
+on_connect	mqtt_client_usr.py	/^def on_connect(client, userdata, flags, rc):$/;"	f
+on_key_event	matplotlib_tkinter.py	/^def on_key_event(event):$/;"	f
+on_message_callback	mqtt_client_usr.py	/^def on_message_callback(client, userdata, message):$/;"	f
+op_bid_cnt	bid.py	/^op_bid_cnt   = 1$/;"	v
+op_bid_cnt	bidding.py	/^op_bid_cnt   = 2$/;"	v
+op_bid_end	bid.py	/^op_bid_end   = 220$/;"	v
+op_bid_end	bidding.py	/^op_bid_end   = 220.0$/;"	v
+op_bid_start	bid.py	/^op_bid_start = 180$/;"	v
+op_bid_start	bidding.py	/^op_bid_start = 180.0$/;"	v
+op_offer	bidding.py	/^op_offer = 180$/;"	v
+osc	dbpsk_modem.py	/^osc = np.cos(2*np.pi*f0*np.arange(fs\/f0)\/fs)$/;"	v
+out	matched_filter.py	/^out = matched_filter(data,cf,spr,rep)$/;"	v
+overlap	quant_debut.py	/^def overlap(data):$/;"	f
+p	chaos_logistic.py	/^        p=logstic(k,temp)$/;"	v
+p	cov_test.py	/^p = R.dot(p)$/;"	v
+p	cov_test.py	/^p = S.dot(p.T)$/;"	v
+p	cov_test.py	/^p = np.array(list(zip(x,y)))$/;"	v
+pca	ica_2comps.py	/^pca = PCA(n_components=2)$/;"	v
+pca	ica_demo.py	/^pca = PCA(n_components=3)$/;"	v
+pd	rdc_sim.py	/^    def pd(self, d_iq, vco):$/;"	m	class:PhaseDetector
+period	duffing.py	/^period = 2*np.pi\/(1.0*omega)$/;"	v
+pfsm	accmeter_1d_adc.py	/^pfsm = pkg_fsm()$/;"	v
+pfsm	accmeter_1d_gui.py	/^pfsm = pkg_fsm()$/;"	v
+pfsm	accmeter_1d_new_gui.py	/^pfsm = pkg_fsm()$/;"	v
+pfsm	accmeter_4chan_adc.py	/^pfsm = pkg_fsm()$/;"	v
+pfsm	plant_ecg.py	/^pfsm = pkg_fsm()$/;"	v
+phase_estimate	general_dpll.py	/^phase_estimate = np.zeros(M)$/;"	v
+phase_margin	transfer_func.py	/^phase_margin = phase[abs(mag[po:]).argmin()]+180$/;"	v
+phi	iq_test.py	/^phi = np.pi*3\/16$/;"	v
+pivot	quant_debut.py	/^def pivot(data,col):$/;"	f
+pivot_cnt	quant_debut.py	/^def pivot_cnt(pdata,cdata):$/;"	f
+pkg_fsm	accmeter_1d_adc.py	/^class pkg_fsm(object):$/;"	c
+pkg_fsm	accmeter_1d_gui.py	/^class pkg_fsm(object):$/;"	c
+pkg_fsm	accmeter_1d_new_gui.py	/^class pkg_fsm(object):$/;"	c
+pkg_fsm	accmeter_4chan_adc.py	/^class pkg_fsm(object):$/;"	c
+pkg_fsm	plant_ecg.py	/^class pkg_fsm(object):$/;"	c
+pkg_resolve	accmeter_gui.py	/^def pkg_resolve():$/;"	f
+pll_tb	costas_loop.py	/^def pll_tb():$/;"	f
+pll_tb	rdc_sim.py	/^def pll_tb():$/;"	f
+plotsegs	quant_debut.py	/^def plotsegs(data,pair,show):$/;"	f
+pn	iq_test.py	/^pn = lfsr(5,0o45,0)$/;"	v
+po	transfer_func.py	/^po = 4$/;"	v
+poly1	gold.py	/^    poly1 = [5, 4, 2, 1, 0]$/;"	v
+poly2	gold.py	/^    poly2 = [5, 2, 0]$/;"	v
+position	duffing.py	/^position = np.zeros(len(t))$/;"	v
+pvcnt	quant_debut.py	/^def pvcnt(seg):$/;"	f
+pvr	quant_debut.py	/^def pvr(raw):$/;"	f
+qpsk	qpsk_mod_demod.py	/^    qpsk = odd_sig + even_sig   # modulated wave = oddbits + evenbits$/;"	v
+rand_tree	randtree.py	/^class rand_tree(object):$/;"	c
+rand_tree_inst	randtree.py	/^    rand_tree_inst = rand_tree(4,15,2)  #4层，最大节点数15，最大子节点数2$/;"	v
+rb	accmeter_1d_adc.py	/^rb = RingBuffer(WINDOW_SIZE,1)$/;"	v
+rb	accmeter_1d_gui.py	/^rb = RingBuffer(WINDOW_SIZE,1)$/;"	v
+rb	accmeter_1d_new_gui.py	/^rb = RingBuffer(WINDOW_SIZE,1)$/;"	v
+rb	accmeter_4chan_adc.py	/^rb = RingBuffer(WINDOW_SIZE,DIM)$/;"	v
+rb	accmeter_gui.py	/^rb = RingBuffer(WINDOW_SIZE,3)$/;"	v
+rb	plant_ecg.py	/^rb = RingBuffer(WINDOW_SIZE,1)$/;"	v
+rb	ringbuf.py	/^    rb = RingBuffer(10,3)$/;"	v
+rc_inst	rcos.py	/^    rc_inst = my_rcc(beta, sps, span)$/;"	v	class:my_rcc
+rcc_coef	rcos.py	/^    def rcc_coef(self):$/;"	m	class:my_rcc
+rcc_filt	rcos.py	/^    def rcc_filt(self,din):$/;"	m	class:my_rcc
+rcc_inst	my_dsss.py	/^rcc_inst = rcos.my_rcc(0.4,SPS,8)$/;"	v
+rcc_lfilt	rcos.py	/^    def rcc_lfilt(self,din):$/;"	m	class:my_rcc
+rd_reg	mqtt_client_usr.py	/^def rd_reg(addr):$/;"	f
+read_reg	mqtt_client_usr.py	/^def read_reg(addr):$/;"	f
+remaining	ringbuf.py	/^    def remaining(self):$/;"	m	class:RingBuffer
+rep	matched_filter.py	/^rep = 8$/;"	v
+reset	gold.py	/^    def reset(self):$/;"	m	class:GoldSequence
+reset	gold.py	/^    def reset(self):$/;"	m	class:LFSR
+reset	randtree.py	/^    def reset(self):$/;"	m	class:rand_tree
+reset_flag	ringbuf.py	/^    def reset_flag(self):$/;"	m	class:RingBuffer
+resolve	accmeter_1d_adc.py	/^    def resolve(self,din):$/;"	m	class:pkg_fsm
+resolve	accmeter_1d_gui.py	/^    def resolve(self,din):$/;"	m	class:pkg_fsm
+resolve	accmeter_1d_new_gui.py	/^    def resolve(self,din):$/;"	m	class:pkg_fsm
+resolve	accmeter_4chan_adc.py	/^    def resolve(self,din):$/;"	m	class:pkg_fsm
+resolve	plant_ecg.py	/^    def resolve(self,din):$/;"	m	class:pkg_fsm
+root	matplotlib_tkinter.py	/^root =Tk.Tk()$/;"	v
+s	dsb_sc_modem.py	/^s = sig_src(fs,'sin',f0,1,0,t)$/;"	v
+s	matplotlib_tkinter.py	/^s = sin(2*pi*t)$/;"	v
+s1	ica_2comps.py	/^s1 = np.sin(20 * time) # 信号源 1 : 正弦信号$/;"	v
+s1	ica_demo.py	/^s1 = np.sin(20 * time) # 信号源 1 : 正弦信号$/;"	v
+s2	ica_2comps.py	/^s2 = np.random.normal(1,1,n_samples)$/;"	v
+s2	ica_demo.py	/^s2 = np.zeros(n_samples)$/;"	v
+s2p	bpsk_modem.py	/^s2p = B2IQ(np.random.randint(0,2,40),mode,dif,1)$/;"	v
+s3	ica_demo.py	/^s3 = np.zeros(n_samples)$/;"	v
+s_wn	iq_test.py	/^s_wn = AWGN(msp_si,snr)$/;"	v
+salpha	bidding.py	/^salpha = Slider(plt.axes([0.15, 0.06, 0.7, 0.02]), 'my_avg_bid', valmin=0.8, valmax=2, valinit= 0.8)$/;"	v
+sample_freq	goertzel.py	/^sample_freq= 4000$/;"	v
+sample_rate	sig_gen.py	/^    sample_rate=44100 # number of samples per second$/;"	v
+samples_per_frame	gold.py	/^                        samples_per_frame=2**len(init)-1, index=0, matlab=True, debug=True)$/;"	v
+scale	cov_test1.py	/^scale = np.array([[sx,0],[0,sy]])$/;"	v
+segment	quant_debut.py	/^def segment(data):$/;"	f
+ser_init	accmeter_1d_adc.py	/^def ser_init():$/;"	f
+ser_init	accmeter_1d_gui.py	/^def ser_init():$/;"	f
+ser_init	accmeter_1d_new_gui.py	/^def ser_init():$/;"	f
+ser_init	accmeter_4chan_adc.py	/^def ser_init():$/;"	f
+ser_init	accmeter_gui.py	/^def ser_init():$/;"	f
+ser_init	plant_ecg.py	/^def ser_init():$/;"	f
+shape_filtered	my_dsss.py	/^shape_filtered = rcc_inst.rcc_filt(upsampel_sig)$/;"	v
+shape_filtered2	my_dsss.py	/^shape_filtered2 = rcc_inst.rcc_filt(signal_wnoise)$/;"	v
+shift	gold.py	/^    def shift(self):$/;"	m	class:LFSR
+si	iq_test.py	/^si = 1- 2*np.random.randint(0,2,24)$/;"	v
+sig	fft_interpolation.py	/^sig = np.cos(2*np.pi*f0*t_span)+np.cos(2*np.pi*f1*t_span) + 5*noise$/;"	v
+sig	fft_interpolation.py	/^sig = np.kron(np.ones(N),sig)$/;"	v
+sig_a	audio_sim.py	/^sig_a = np.sin(2*np.pi*f1*t)$/;"	v
+sig_b	audio_sim.py	/^sig_b = np.sin(2*np.pi*f2*t + delta)$/;"	v
+sig_exp	fft_interpolation.py	/^sig_exp = np.kron(sig,[1,0,0,0])$/;"	v
+sig_freq	goertzel.py	/^sig_freq = 470$/;"	v
+sig_gen	matched_filter.py	/^def sig_gen(carrier_freq,spr,rep,off):$/;"	f
+sig_src	dsb_sc_modem.py	/^def sig_src(fs,wave_form,fc,ampl,phi,t):$/;"	f
+sig_sum	audio_sim.py	/^sig_sum = sig_a + sig_b + noise$/;"	v
+signal_wnoise	my_dsss.py	/^signal_wnoise = shape_filtered + noise*0$/;"	v
+sin	iq_test.py	/^sin = np.kron(np.ones(sp_si.size),np.sin(2*np.pi*fs*np.arange(spr\/fs)\/spr+phi))$/;"	v
+sin_out	general_dpll.py	/^sin_out = np.zeros(M)$/;"	v
+sine_tone	sig_gen.py	/^def sine_tone(frequency, duration, volume=1, sample_rate=22050):$/;"	f
+smod	iq_test.py	/^def smod(N,fs,spr):$/;"	f
+snr	iq_test.py	/^snr = 10$/;"	v
+sock_init	accmeter_gui.py	/^def sock_init(port):$/;"	f
+sp_si	iq_test.py	/^sp_si = np.kron(si,pn)$/;"	v
+span	rcos.py	/^    span = 8$/;"	v	class:my_rcc
+spr	iq_test.py	/^spr = SAMPLE_FREQ$/;"	v
+spr	matched_filter.py	/^spr = 4000$/;"	v
+spread	IQ_mod.py	/^    def spread(self,din,code):        $/;"	m	class:iq_mod
+spread_sig	my_dsss.py	/^spread_sig = np.kron(base_sig,PN_CODE)$/;"	v
+sps	rcos.py	/^    sps = 8$/;"	v	class:my_rcc
+state	lfsr_test.py	/^state = [0,0,0,1]$/;"	v
+statics	test.py	/^    def statics(self):$/;"	m	class:Acount
+step	costas_loop.py	/^    def step(self, d_i,d_q):$/;"	m	class:COMB
+step	costas_loop.py	/^    def step(self, d_i,d_q):$/;"	m	class:PLL
+step	costas_loop.py	/^    def step(self, in_sig):$/;"	m	class:COSTAS
+step	gold.py	/^    def step(self):$/;"	m	class:GoldSequence
+step	gold.py	/^    def step(self):$/;"	m	class:LFSR
+step	rdc_sim.py	/^    def step(self, d_iq):$/;"	m	class:COMB
+step	rdc_sim.py	/^    def step(self, d_iq):$/;"	m	class:PLL
+strange_attractor	duffing.py	/^strange_attractor = np.zeros([int(T\/period),2])$/;"	v
+sys	transfer_func.py	/^sys = signal.TransferFunction(num,den,dt=1\/fs)$/;"	v
+sys_init	accmeter_1d_adc.py	/^def sys_init(mode,ip,port):    $/;"	f
+sys_init	accmeter_1d_gui.py	/^def sys_init(mode,ip,port):    $/;"	f
+sys_init	accmeter_1d_new_gui.py	/^def sys_init(mode,ip,port):    $/;"	f
+sys_init	accmeter_4chan_adc.py	/^def sys_init(mode,ip,port):    $/;"	f
+sys_init	accmeter_gui.py	/^def sys_init(mode,ip,port):$/;"	f
+sys_init	plant_ecg.py	/^def sys_init(mode,ip,port):    $/;"	f
+t	audio_sim.py	/^t = np.arange(FS*Ts)\/FS$/;"	v
+t	dsb_sc_modem.py	/^t = 0.3$/;"	v
+t	duffing.py	/^t = np.arange(0,T,h)$/;"	v
+t	matplotlib_tkinter.py	/^t = arange(0.0,3,0.01)$/;"	v
+t	qpsk_mod_demod.py	/^    t = np.linspace(t1,t2,100)$/;"	v
+t	qpsk_mod_demod.py	/^t = np.linspace(0,1,100)  # Time$/;"	v
+t	quant_debut.py	/^    t = threading.Thread(target=mult_t,args=[item])$/;"	v
+t1	duffing.py	/^t1 = time.time() #times the computation$/;"	v
+t1	qpsk_mod_demod.py	/^    t1 = t1 + (tb+0.01)$/;"	v
+t1	qpsk_mod_demod.py	/^t1 = 0$/;"	v
+t1	qpsk_mod_demod.py	/^t1 = 0;$/;"	v
+t2	duffing.py	/^t2 = time.time()$/;"	v
+t2	qpsk_mod_demod.py	/^    t2 = t2 + (tb+0.01)$/;"	v
+t2	qpsk_mod_demod.py	/^t2 = tb$/;"	v
+t2	qpsk_mod_demod.py	/^t2 = tb;$/;"	v
+t_resolve	accmeter_1d_adc.py	/^def t_resolve():$/;"	f
+t_resolve	accmeter_1d_gui.py	/^def t_resolve():$/;"	f
+t_resolve	accmeter_1d_new_gui.py	/^def t_resolve():$/;"	f
+t_resolve	accmeter_4chan_adc.py	/^def t_resolve():$/;"	f
+t_resolve	accmeter_gui.py	/^def t_resolve():$/;"	f
+t_resolve	plant_ecg.py	/^def t_resolve():$/;"	f
+t_span	fft_interpolation.py	/^t_span = np.arange(0,T,1\/FS)$/;"	v
+ta	my_dll.py	/^    ta = np.arange(10)$/;"	v
+tags	ptags.py	/^tags = []    # Modified global variable!$/;"	v
+target_bid	bidding.py	/^target_bid = Slider(plt.axes([0.15, 0.01, 0.7, 0.02]), 'my_offer', valmin=op_bid_start, valmax=op_bid_end, valinit=216.67)$/;"	v
+target_freq	goertzel.py	/^target_freq = 470$/;"	v
+tb	qpsk_mod_demod.py	/^tb = 1;$/;"	v
+tcp_client_init	accmeter_1d_adc.py	/^def tcp_client_init(ip,port):$/;"	f
+tcp_client_init	accmeter_1d_gui.py	/^def tcp_client_init(ip,port):$/;"	f
+tcp_client_init	accmeter_1d_new_gui.py	/^def tcp_client_init(ip,port):$/;"	f
+tcp_client_init	accmeter_4chan_adc.py	/^def tcp_client_init(ip,port):$/;"	f
+tcp_client_init	accmeter_gui.py	/^def tcp_client_init(ip,port):$/;"	f
+tcp_client_init	plant_ecg.py	/^def tcp_client_init(ip,port):$/;"	f
+tcplink	accmeter_gui.py	/^def tcplink(sock, addr):$/;"	f
+temp	chaos_logistic.py	/^        temp=x[i]$/;"	v
+temp_2p	temp_calc.py	/^def temp_2p(x,ta1,ts1,ta2,ts2):$/;"	f
+temp_cal	temp_calc.py	/^def temp_cal(temp,k,b):$/;"	f
+tf	transfer_func.py	/^tf = 0.001$/;"	v
+theta	cov_test.py	/^theta = np.pi\/6$/;"	v
+theta	cov_test1.py	/^theta = 2*np.pi*0.3$/;"	v
+theta	my_cov.py	/^theta = np.pi\/4$/;"	v
+time	ica_2comps.py	/^time = np.linspace(0, 8, n_samples)$/;"	v
+time	ica_demo.py	/^time = np.linspace(0, 8, n_samples)$/;"	v
+toolbar	matplotlib_tkinter.py	/^toolbar =NavigationToolbar2TkAgg(canvas, root)$/;"	v
+treat_file	ptags.py	/^def treat_file(filename):$/;"	f
+ts	tf.py	/^ts = 1\/fs$/;"	v
+tspan	audio_sim.py	/^tspan = int(t.size\/80)$/;"	v
+tt	test111.py	/^tt = mav_inst.insert(np.ones(12))$/;"	v
+tt	zen_opt.py	/^tt = fractal(d,3)$/;"	v
+uclose	test.py	/^    def uclose(self,price):$/;"	m	class:Acount
+ufollow	test.py	/^    def ufollow(self,ohlcv):$/;"	m	class:Acount
+uopen	test.py	/^    def uopen(self,price,bdir):$/;"	m	class:Acount
+update	accmeter_1d_adc.py	/^def update(i):$/;"	f
+update	accmeter_1d_gui.py	/^def update(i):$/;"	f
+update	accmeter_1d_new_gui.py	/^def update(i):$/;"	f
+update	accmeter_4chan_adc.py	/^def update(i):$/;"	f
+update	accmeter_gui.py	/^def update(i):$/;"	f
+update	bidding.py	/^def update(event):$/;"	f
+update	plant_ecg.py	/^def update(i):$/;"	f
+update_av	quant_debut.py	/^def update_av(timeout):$/;"	f
+update_av	zen_opt.py	/^def update_av(timeout):$/;"	f
+update_phase_difference	costas_loop.py	/^    def update_phase_difference(self, d_i,d_q):$/;"	m	class:COMB
+update_phase_difference	costas_loop.py	/^    def update_phase_difference(self, d_i,d_q):$/;"	m	class:PLL
+update_phase_difference	costas_loop.py	/^    def update_phase_difference(self, in_sig):$/;"	m	class:COSTAS
+update_phase_estimate	costas_loop.py	/^    def update_phase_estimate(self):$/;"	m	class:COMB
+update_phase_estimate	costas_loop.py	/^    def update_phase_estimate(self):$/;"	m	class:COSTAS
+update_phase_estimate	costas_loop.py	/^    def update_phase_estimate(self):$/;"	m	class:PLL
+update_phase_estimate	rdc_sim.py	/^    def update_phase_estimate(self):$/;"	m	class:COMB
+update_phase_estimate	rdc_sim.py	/^    def update_phase_estimate(self):$/;"	m	class:PLL
+upsampel_sig	my_dsss.py	/^upsampel_sig = np.kron(spread_sig,np.append(1,np.zeros(SPS-1)))$/;"	v
+upsample	my_dll.py	/^def upsample(din,sps,mode=0):$/;"	f
+uscale	test.py	/^    def uscale(self,price):$/;"	m	class:Acount
+v	duffing.py	/^v = 0.0$/;"	v
+velocity	duffing.py	/^velocity = np.zeros(len(t))$/;"	v
+view	ringbuf.py	/^    def view(self):$/;"	m	class:RingBuffer
+volume	sig_gen.py	/^    volume=.1, # 0..1 how loud it is$/;"	v
+w	linear regression.py	/^w = calc_lr(y,x)$/;"	v
+wave_gen	wave_gen.py	/^def wave_gen(sample_rate=8000,freq=500,duration=100,volume = 1000):$/;"	f
+wgn	FIR_parameters.py	/^def wgn(x, snr):$/;"	f
+windows	goertzel.py	/^def windows(name='Hanning', N=20): # Rect\/Hanning\/Hamming $/;"	f
+wn	goertzel.py	/^wn = np.random.randn(2*N)$/;"	v
+wr_reg	mqtt_client_usr.py	/^def wr_reg(addr,data):$/;"	f
+write_reg	mqtt_client_usr.py	/^def write_reg(addr,data):$/;"	f
+write_seq_to_file	gold.py	/^def write_seq_to_file(filename, seq):$/;"	f
+x	IQ_mod.py	/^x = np.arange(dm.shape[1])\/SAMPLE_FREQ$/;"	v
+x	accmeter_1d_adc.py	/^x = np.arange(0,WINDOW_SIZE)\/FS$/;"	v
+x	accmeter_1d_gui.py	/^x = np.arange(0,WINDOW_SIZE)\/FS$/;"	v
+x	accmeter_1d_new_gui.py	/^x = np.arange(0,WINDOW_SIZE)\/FS$/;"	v
+x	accmeter_4chan_adc.py	/^x = np.arange(0,WINDOW_SIZE)\/FS$/;"	v
+x	accmeter_gui.py	/^x = np.arange(0,WINDOW_SIZE)\/FS$/;"	v
+x	audio_sim.py	/^x = np.arange(0,WINDOW_SIZE)\/FS$/;"	v
+x	auto_corr.py	/^x = (x + noise*0)\/16$/;"	v
+x	auto_corr.py	/^x = np.kron(np.ones(P_CNT),np.sin(2*np.pi*FREQ*np.arange(SAMPLE_RATE\/FREQ)\/SAMPLE_RATE))$/;"	v
+x	auto_corr.py	/^x = x + x1$/;"	v
+x	chaos_logistic.py	/^    x=[0.3]$/;"	v
+x	cov_test.py	/^x= np.random.randn(N)$/;"	v
+x	cov_test1.py	/^x = np.random.normal(0, 1, 500)$/;"	v
+x	dual_tone.py	/^x = np.arange(0,WINDOW_SIZE)\/FS$/;"	v
+x	duffing.py	/^x = 0.5$/;"	v
+x	fft_comp.py	/^x = np.arange(0,32*np.pi,2*np.pi\/64)$/;"	v
+x	fft_interpolation.py	/^x = np.arange(0,WINDOW_SIZE)\/FS$/;"	v
+x	goertzel.py	/^x = np.arange(m.shape[0])\/sample_freq$/;"	v
+x	linear regression.py	/^x = data[:,1:]$/;"	v
+x	my_cov.py	/^x = np.random.normal(0,1,500)$/;"	v
+x	plant_ecg.py	/^x = np.arange(0,WINDOW_SIZE)\/FS$/;"	v
+x	raw_fft.py	/^x = np.arange(0,WINDOW_SIZE)\/FS$/;"	v
+x	xplotuntitled0.py	/^x = np.arange(0,1000)$/;"	v
+x1	auto_corr.py	/^x1 = np.kron(np.ones(P_CNT),np.cos(2*np.pi*FREQ*np.arange(SAMPLE_RATE\/FREQ)\/SAMPLE_RATE))$/;"	v
+x1	qpsk_mod_demod.py	/^    x1 = sum(c1*channel[i,:])$/;"	v
+x2	qpsk_mod_demod.py	/^    x2 = sum(c2*channel[i,:])$/;"	v
+x2F	duffing.py	/^x2F = F_0*np.cos(omega*t)$/;"	v
+x3F	duffing.py	/^x3F = -F_0*omega*np.sin(omega*t)$/;"	v
+x4F	duffing.py	/^x4F = -F_0*omega*omega*np.cos(omega*t)$/;"	v
+x5F	duffing.py	/^x5F = F_0*omega*omega*omega*np.sin(omega*t)$/;"	v
+x_2	duffing.py	/^def x_2(x,v):$/;"	f
+x_3	duffing.py	/^def x_3(x2,x,v):$/;"	f
+x_4	duffing.py	/^def x_4(x3,x2,x,v):$/;"	f
+x_5	duffing.py	/^def x_5(x4,x3,x2,x,v):$/;"	f
+xh	IQ_mod.py	/^xh = np.arange(dm.shape[1]\/2 + 1)*SAMPLE_FREQ\/dm.shape[1]$/;"	v
+xh	accmeter_1d_adc.py	/^xh = np.arange(0,WINDOW_SIZE\/2+1)*FS\/(WINDOW_SIZE)$/;"	v
+xh	accmeter_1d_gui.py	/^xh = np.arange(0,WINDOW_SIZE\/2+1)*FS\/(WINDOW_SIZE)$/;"	v
+xh	accmeter_1d_new_gui.py	/^xh = np.arange(0,WINDOW_SIZE\/2+1)*FS\/(WINDOW_SIZE)$/;"	v
+xh	accmeter_4chan_adc.py	/^xh = np.arange(0,WINDOW_SIZE\/2+1)*FS\/(WINDOW_SIZE)$/;"	v
+xh	accmeter_gui.py	/^xh = np.arange(0,WINDOW_SIZE\/2)*FS\/WINDOW_SIZE$/;"	v
+xh	audio_sim.py	/^xh = np.arange(0,WINDOW_SIZE\/2+1)*FS\/(WINDOW_SIZE)$/;"	v
+xh	auto_corr.py	/^xh = np.arange(x.shape[0]\/2 + 1)*SAMPLE_RATE\/x.shape[0]$/;"	v
+xh	dual_tone.py	/^xh = np.arange(0,WINDOW_SIZE\/2+1)*FS\/(WINDOW_SIZE)$/;"	v
+xh	fft_interpolation.py	/^xh = np.arange(0,WINDOW_SIZE\/2+1)*FS\/(WINDOW_SIZE)$/;"	v
+xh	plant_ecg.py	/^xh = np.arange(0,WINDOW_SIZE\/2+1)*FS\/(WINDOW_SIZE)$/;"	v
+xh	raw_fft.py	/^xh = np.arange(0,WINDOW_SIZE\/2+1)*FS\/(WINDOW_SIZE)$/;"	v
+xh	xplotuntitled0.py	/^xh = np.sin(x)$/;"	v
+xh	zen_opt.py	/^xh = np.nonzero(tt[:,-1]<0)$/;"	v
+xl	zen_opt.py	/^xl = np.nonzero(tt[:,-1]>0)$/;"	v
+xrange	sig_gen.py	/^    xrange = range$/;"	v
+xs	zen_opt.py	/^xs = np.nonzero(dd[:,-1]!=0)[0]$/;"	v
+y	accmeter_gui.py	/^y = np.random.randn(len(x),3)$/;"	v
+y	cov_test.py	/^y= np.random.randn(N)$/;"	v
+y	cov_test1.py	/^y = np.random.normal(0, 1, 500)$/;"	v
+y	linear regression.py	/^y = data[:,0]   $/;"	v
+y	my_cov.py	/^y = np.random.normal(0,1,500)$/;"	v
+y1	auto_corr.py	/^y1 = auto_corr(x)$/;"	v
+y2	auto_corr.py	/^y2 = auto_corr(y1)$/;"	v
+y3	auto_corr.py	/^y3 = auto_corr(y2)$/;"	v
+y4	auto_corr.py	/^y4 = auto_corr(y3)\/100$/;"	v
+yh	zen_opt.py	/^yh = list(map(lambda x:tt[x,3],xh))$/;"	v
+yl	zen_opt.py	/^yl = list(map(lambda x:tt[x,2],xl))$/;"	v
+ys	zen_opt.py	/^ys = list(map(lambda x:dd[x,2] if dd[x,-1]==1 else dd[x,3],xs))$/;"	v
+yy	fft_comp.py	/^yy = fft(inp)$/;"	v
+z	bid.py	/^z = calc_score(my_offer,y)$/;"	v
+z	bidding.py	/^z = calc_score(my_offer,y)$/;"	v
+z	tf.py	/^z = ct.tf('z')$/;"	v
+z	transfer_func.py	/^z=sy.Symbol('z')$/;"	v
+z0	bidding.py	/^z0 = calc_score(x,y)$/;"	v
+z1	IQ_mod.py	/^z1 = lpf_inst_i.filt(df[0:20])$/;"	v
+z1	IQ_mod.py	/^z1 = lpf_inst_q.filt(df[0:20])$/;"	v
+z2	IQ_mod.py	/^z2 = lpf_inst_i.filt(df[20:40])$/;"	v
+z2	IQ_mod.py	/^z2 = lpf_inst_q.filt(df[20:40])$/;"	v
+z3	IQ_mod.py	/^z3 = lpf_inst_i.filt(df[40:60])$/;"	v
+z3	IQ_mod.py	/^z3 = lpf_inst_q.filt(df[40:60])$/;"	v
+z4	IQ_mod.py	/^z4 = lpf_inst_i.filt(df[60:80])$/;"	v
+z4	IQ_mod.py	/^z4 = lpf_inst_q.filt(df[60:80])$/;"	v
+z5	IQ_mod.py	/^z5 = lpf_inst_i.filt(df[80:])$/;"	v
+z5	IQ_mod.py	/^z5 = lpf_inst_q.filt(df[80:])$/;"	v
+zeta	transfer_func.py	/^zeta = 0.7$/;"	v
+zo	IQ_mod.py	/^zo = np.concatenate((z1,z2,z3,z4,z5))$/;"	v
+zt	IQ_mod.py	/^zt = signal.filtfilt(b,a,df)$/;"	v
