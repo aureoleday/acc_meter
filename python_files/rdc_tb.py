@@ -177,7 +177,6 @@ class PLL(object):
         self.loop_reg[0] = self.loop_filter.lf_out
 
     def step(self, d_iq):
-        # Takes an instantaneous sample of a signal and updates the PLL's inner state
         if self.opf == 'R':
             self.phase_difference = self.phase_detector.phd(d_iq,self.vco)
         else:
